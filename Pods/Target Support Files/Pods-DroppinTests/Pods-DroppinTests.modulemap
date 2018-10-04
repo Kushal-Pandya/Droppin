@@ -1,0 +1,6 @@
+framework module Pods_DroppinTests {
+  umbrella header "Pods-DroppinTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

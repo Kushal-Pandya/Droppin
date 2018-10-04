@@ -16,6 +16,7 @@
 		AE1EB9C3215C0F3400EC77A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE1EB9C1215C0F3400EC77A1 /* LaunchScreen.storyboard */; };
 		AE1EB9CE215C0F3400EC77A1 /* DroppinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1EB9CD215C0F3400EC77A1 /* DroppinTests.swift */; };
 		AE1EB9D9215C0F3400EC77A1 /* DroppinUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1EB9D8215C0F3400EC77A1 /* DroppinUITests.swift */; };
+		AE34ED052166B0B5002CDF93 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE34ED042166B0B5002CDF93 /* ForgotPasswordViewController.swift */; };
 		AE7B2298215F151B00A2899F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7B2297215F151B00A2899F /* LoginViewController.swift */; };
 		AE7B229A215F153600A2899F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7B2299215F153600A2899F /* SignUpViewController.swift */; };
 		AE7B229C215F155200A2899F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7B229B215F155200A2899F /* MapViewController.swift */; };
@@ -62,6 +63,7 @@
 		AE1EB9D4215C0F3400EC77A1 /* DroppinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DroppinUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE1EB9D8215C0F3400EC77A1 /* DroppinUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppinUITests.swift; sourceTree = "<group>"; };
 		AE1EB9DA215C0F3400EC77A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE34ED042166B0B5002CDF93 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		AE7B2297215F151B00A2899F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AE7B2299215F153600A2899F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		AE7B229B215F155200A2899F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				AE1EB9B4215C0F3300EC77A1 /* AppDelegate.swift */,
 				AE1EB9BC215C0F3300EC77A1 /* Main.storyboard */,
 				AE7B2297215F151B00A2899F /* LoginViewController.swift */,
+				AE34ED042166B0B5002CDF93 /* ForgotPasswordViewController.swift */,
 				AE7B2299215F153600A2899F /* SignUpViewController.swift */,
 				AE7B229B215F155200A2899F /* MapViewController.swift */,
 				AE7B229D215F156600A2899F /* EventViewController.swift */,
@@ -410,6 +413,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE7B229E215F156600A2899F /* EventViewController.swift in Sources */,
+				AE34ED052166B0B5002CDF93 /* ForgotPasswordViewController.swift in Sources */,
 				AE7B229A215F153600A2899F /* SignUpViewController.swift in Sources */,
 				AE7B2298215F151B00A2899F /* LoginViewController.swift in Sources */,
 				AE1EB9B5215C0F3300EC77A1 /* AppDelegate.swift in Sources */,
