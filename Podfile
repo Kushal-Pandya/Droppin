@@ -7,6 +7,7 @@ target 'Droppin' do
 
   # Pods for Droppin
   pod 'Firebase/Core'
+  pod 'IQKeyboardManagerSwift'
 
   target 'DroppinTests' do
     inherit! :search_paths
