@@ -1,0 +1,760 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2D841D4485905204008C2000 /* Pods_Droppin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD91DB780EE48624242912CB /* Pods_Droppin.framework */; };
+		A3B24435F08B5CBEA0606DC5 /* Pods_DroppinUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98CEE1F312BC374677B8D9A8 /* Pods_DroppinUITests.framework */; };
+		AE19E206215EF9E100EF6CD2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE19E205215EF9E100EF6CD2 /* GoogleService-Info.plist */; };
+		AE1EB9B5215C0F3300EC77A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1EB9B4215C0F3300EC77A1 /* AppDelegate.swift */; };
+		AE1EB9BE215C0F3300EC77A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE1EB9BC215C0F3300EC77A1 /* Main.storyboard */; };
+		AE1EB9C0215C0F3400EC77A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE1EB9BF215C0F3400EC77A1 /* Assets.xcassets */; };
+		AE1EB9C3215C0F3400EC77A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE1EB9C1215C0F3400EC77A1 /* LaunchScreen.storyboard */; };
+		AE1EB9CE215C0F3400EC77A1 /* DroppinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1EB9CD215C0F3400EC77A1 /* DroppinTests.swift */; };
+		AE1EB9D9215C0F3400EC77A1 /* DroppinUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1EB9D8215C0F3400EC77A1 /* DroppinUITests.swift */; };
+		AE34ED052166B0B5002CDF93 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE34ED042166B0B5002CDF93 /* ForgotPasswordViewController.swift */; };
+		AE7B2298215F151B00A2899F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7B2297215F151B00A2899F /* LoginViewController.swift */; };
+		AE7B229A215F153600A2899F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7B2299215F153600A2899F /* SignUpViewController.swift */; };
+		AE7B229C215F155200A2899F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7B229B215F155200A2899F /* MapViewController.swift */; };
+		AE7B229E215F156600A2899F /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7B229D215F156600A2899F /* EventViewController.swift */; };
+		AE7B22A0215F15AD00A2899F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7B229F215F15AD00A2899F /* SettingsViewController.swift */; };
+		AFE70290ED12991B049C0125 /* Pods_DroppinTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A501EAC882453C5886418F5B /* Pods_DroppinTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AE1EB9CA215C0F3400EC77A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AE1EB9A9215C0F3300EC77A1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AE1EB9B0215C0F3300EC77A1;
+			remoteInfo = Droppin;
+		};
+		AE1EB9D5215C0F3400EC77A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AE1EB9A9215C0F3300EC77A1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AE1EB9B0215C0F3300EC77A1;
+			remoteInfo = Droppin;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		00A17D45726F6A18BE120266 /* Pods-Droppin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Droppin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Droppin/Pods-Droppin.release.xcconfig"; sourceTree = "<group>"; };
+		50E0D9161FE2D5FCD8A0A6B5 /* Pods-Droppin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Droppin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Droppin/Pods-Droppin.debug.xcconfig"; sourceTree = "<group>"; };
+		98CEE1F312BC374677B8D9A8 /* Pods_DroppinUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DroppinUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A501EAC882453C5886418F5B /* Pods_DroppinTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DroppinTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8D703179BD090A2CE5A1207 /* Pods-DroppinUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DroppinUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DroppinUITests/Pods-DroppinUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AB207ADBB107870145AFDBEE /* Pods-DroppinUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DroppinUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DroppinUITests/Pods-DroppinUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		AD91DB780EE48624242912CB /* Pods_Droppin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Droppin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE19E205215EF9E100EF6CD2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AE1EB9B1215C0F3300EC77A1 /* Droppin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Droppin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE1EB9B4215C0F3300EC77A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AE1EB9BD215C0F3300EC77A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AE1EB9BF215C0F3400EC77A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AE1EB9C2215C0F3400EC77A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AE1EB9C4215C0F3400EC77A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE1EB9C9215C0F3400EC77A1 /* DroppinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DroppinTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE1EB9CD215C0F3400EC77A1 /* DroppinTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppinTests.swift; sourceTree = "<group>"; };
+		AE1EB9CF215C0F3400EC77A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE1EB9D4215C0F3400EC77A1 /* DroppinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DroppinUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE1EB9D8215C0F3400EC77A1 /* DroppinUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppinUITests.swift; sourceTree = "<group>"; };
+		AE1EB9DA215C0F3400EC77A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE34ED042166B0B5002CDF93 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		AE7B2297215F151B00A2899F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		AE7B2299215F153600A2899F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		AE7B229B215F155200A2899F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		AE7B229D215F156600A2899F /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		AE7B229F215F15AD00A2899F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E008400CF8761BF78D54164C /* Pods-DroppinTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DroppinTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DroppinTests/Pods-DroppinTests.release.xcconfig"; sourceTree = "<group>"; };
+		E81F59323D36E3FB13608A24 /* Pods-DroppinTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DroppinTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DroppinTests/Pods-DroppinTests.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AE1EB9AE215C0F3300EC77A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D841D4485905204008C2000 /* Pods_Droppin.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AE1EB9C6215C0F3400EC77A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFE70290ED12991B049C0125 /* Pods_DroppinTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AE1EB9D1215C0F3400EC77A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3B24435F08B5CBEA0606DC5 /* Pods_DroppinUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08F759206E34957FD399E85F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				50E0D9161FE2D5FCD8A0A6B5 /* Pods-Droppin.debug.xcconfig */,
+				00A17D45726F6A18BE120266 /* Pods-Droppin.release.xcconfig */,
+				E81F59323D36E3FB13608A24 /* Pods-DroppinTests.debug.xcconfig */,
+				E008400CF8761BF78D54164C /* Pods-DroppinTests.release.xcconfig */,
+				AB207ADBB107870145AFDBEE /* Pods-DroppinUITests.debug.xcconfig */,
+				A8D703179BD090A2CE5A1207 /* Pods-DroppinUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		6791E1D791C2A988ACECA8EB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AD91DB780EE48624242912CB /* Pods_Droppin.framework */,
+				A501EAC882453C5886418F5B /* Pods_DroppinTests.framework */,
+				98CEE1F312BC374677B8D9A8 /* Pods_DroppinUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AE1EB9A8215C0F3300EC77A1 = {
+			isa = PBXGroup;
+			children = (
+				AE1EB9B3215C0F3300EC77A1 /* Droppin */,
+				AE1EB9CC215C0F3400EC77A1 /* DroppinTests */,
+				AE1EB9D7215C0F3400EC77A1 /* DroppinUITests */,
+				AE1EB9B2215C0F3300EC77A1 /* Products */,
+				08F759206E34957FD399E85F /* Pods */,
+				6791E1D791C2A988ACECA8EB /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		AE1EB9B2215C0F3300EC77A1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AE1EB9B1215C0F3300EC77A1 /* Droppin.app */,
+				AE1EB9C9215C0F3400EC77A1 /* DroppinTests.xctest */,
+				AE1EB9D4215C0F3400EC77A1 /* DroppinUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AE1EB9B3215C0F3300EC77A1 /* Droppin */ = {
+			isa = PBXGroup;
+			children = (
+				AE1EB9B4215C0F3300EC77A1 /* AppDelegate.swift */,
+				AE1EB9BC215C0F3300EC77A1 /* Main.storyboard */,
+				AE7B2297215F151B00A2899F /* LoginViewController.swift */,
+				AE34ED042166B0B5002CDF93 /* ForgotPasswordViewController.swift */,
+				AE7B2299215F153600A2899F /* SignUpViewController.swift */,
+				AE7B229B215F155200A2899F /* MapViewController.swift */,
+				AE7B229D215F156600A2899F /* EventViewController.swift */,
+				AE7B229F215F15AD00A2899F /* SettingsViewController.swift */,
+				AE1EB9BF215C0F3400EC77A1 /* Assets.xcassets */,
+				AE1EB9C1215C0F3400EC77A1 /* LaunchScreen.storyboard */,
+				AE1EB9C4215C0F3400EC77A1 /* Info.plist */,
+				AE19E205215EF9E100EF6CD2 /* GoogleService-Info.plist */,
+			);
+			path = Droppin;
+			sourceTree = "<group>";
+		};
+		AE1EB9CC215C0F3400EC77A1 /* DroppinTests */ = {
+			isa = PBXGroup;
+			children = (
+				AE1EB9CD215C0F3400EC77A1 /* DroppinTests.swift */,
+				AE1EB9CF215C0F3400EC77A1 /* Info.plist */,
+			);
+			path = DroppinTests;
+			sourceTree = "<group>";
+		};
+		AE1EB9D7215C0F3400EC77A1 /* DroppinUITests */ = {
+			isa = PBXGroup;
+			children = (
+				AE1EB9D8215C0F3400EC77A1 /* DroppinUITests.swift */,
+				AE1EB9DA215C0F3400EC77A1 /* Info.plist */,
+			);
+			path = DroppinUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AE1EB9B0215C0F3300EC77A1 /* Droppin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AE1EB9DD215C0F3400EC77A1 /* Build configuration list for PBXNativeTarget "Droppin" */;
+			buildPhases = (
+				A8F91982FC0F3248D9CBA9DD /* [CP] Check Pods Manifest.lock */,
+				AE1EB9AD215C0F3300EC77A1 /* Sources */,
+				AE1EB9AE215C0F3300EC77A1 /* Frameworks */,
+				AE1EB9AF215C0F3300EC77A1 /* Resources */,
+				3247ABA73F467794E4BF96E5 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Droppin;
+			productName = Droppin;
+			productReference = AE1EB9B1215C0F3300EC77A1 /* Droppin.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AE1EB9C8215C0F3400EC77A1 /* DroppinTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AE1EB9E0215C0F3400EC77A1 /* Build configuration list for PBXNativeTarget "DroppinTests" */;
+			buildPhases = (
+				2A677D058DE3AE4F8C73D7BA /* [CP] Check Pods Manifest.lock */,
+				AE1EB9C5215C0F3400EC77A1 /* Sources */,
+				AE1EB9C6215C0F3400EC77A1 /* Frameworks */,
+				AE1EB9C7215C0F3400EC77A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AE1EB9CB215C0F3400EC77A1 /* PBXTargetDependency */,
+			);
+			name = DroppinTests;
+			productName = DroppinTests;
+			productReference = AE1EB9C9215C0F3400EC77A1 /* DroppinTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		AE1EB9D3215C0F3400EC77A1 /* DroppinUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AE1EB9E3215C0F3400EC77A1 /* Build configuration list for PBXNativeTarget "DroppinUITests" */;
+			buildPhases = (
+				2638F2B2A91CD3EFFA0E008A /* [CP] Check Pods Manifest.lock */,
+				AE1EB9D0215C0F3400EC77A1 /* Sources */,
+				AE1EB9D1215C0F3400EC77A1 /* Frameworks */,
+				AE1EB9D2215C0F3400EC77A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AE1EB9D6215C0F3400EC77A1 /* PBXTargetDependency */,
+			);
+			name = DroppinUITests;
+			productName = DroppinUITests;
+			productReference = AE1EB9D4215C0F3400EC77A1 /* DroppinUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AE1EB9A9215C0F3300EC77A1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1000;
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = "Syed Ahmed";
+				TargetAttributes = {
+					AE1EB9B0215C0F3300EC77A1 = {
+						CreatedOnToolsVersion = 10.0;
+					};
+					AE1EB9C8215C0F3400EC77A1 = {
+						CreatedOnToolsVersion = 10.0;
+						TestTargetID = AE1EB9B0215C0F3300EC77A1;
+					};
+					AE1EB9D3215C0F3400EC77A1 = {
+						CreatedOnToolsVersion = 10.0;
+						TestTargetID = AE1EB9B0215C0F3300EC77A1;
+					};
+				};
+			};
+			buildConfigurationList = AE1EB9AC215C0F3300EC77A1 /* Build configuration list for PBXProject "Droppin" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AE1EB9A8215C0F3300EC77A1;
+			productRefGroup = AE1EB9B2215C0F3300EC77A1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AE1EB9B0215C0F3300EC77A1 /* Droppin */,
+				AE1EB9C8215C0F3400EC77A1 /* DroppinTests */,
+				AE1EB9D3215C0F3400EC77A1 /* DroppinUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AE1EB9AF215C0F3300EC77A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE1EB9C3215C0F3400EC77A1 /* LaunchScreen.storyboard in Resources */,
+				AE19E206215EF9E100EF6CD2 /* GoogleService-Info.plist in Resources */,
+				AE1EB9C0215C0F3400EC77A1 /* Assets.xcassets in Resources */,
+				AE1EB9BE215C0F3300EC77A1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AE1EB9C7215C0F3400EC77A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AE1EB9D2215C0F3400EC77A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2638F2B2A91CD3EFFA0E008A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DroppinUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2A677D058DE3AE4F8C73D7BA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DroppinTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3247ABA73F467794E4BF96E5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Droppin/Pods-Droppin-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Droppin/Pods-Droppin-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A8F91982FC0F3248D9CBA9DD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Droppin-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AE1EB9AD215C0F3300EC77A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE7B229E215F156600A2899F /* EventViewController.swift in Sources */,
+				AE34ED052166B0B5002CDF93 /* ForgotPasswordViewController.swift in Sources */,
+				AE7B229A215F153600A2899F /* SignUpViewController.swift in Sources */,
+				AE7B2298215F151B00A2899F /* LoginViewController.swift in Sources */,
+				AE1EB9B5215C0F3300EC77A1 /* AppDelegate.swift in Sources */,
+				AE7B229C215F155200A2899F /* MapViewController.swift in Sources */,
+				AE7B22A0215F15AD00A2899F /* SettingsViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AE1EB9C5215C0F3400EC77A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE1EB9CE215C0F3400EC77A1 /* DroppinTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AE1EB9D0215C0F3400EC77A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE1EB9D9215C0F3400EC77A1 /* DroppinUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AE1EB9CB215C0F3400EC77A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AE1EB9B0215C0F3300EC77A1 /* Droppin */;
+			targetProxy = AE1EB9CA215C0F3400EC77A1 /* PBXContainerItemProxy */;
+		};
+		AE1EB9D6215C0F3400EC77A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AE1EB9B0215C0F3300EC77A1 /* Droppin */;
+			targetProxy = AE1EB9D5215C0F3400EC77A1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AE1EB9BC215C0F3300EC77A1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AE1EB9BD215C0F3300EC77A1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AE1EB9C1215C0F3400EC77A1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AE1EB9C2215C0F3400EC77A1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AE1EB9DB215C0F3400EC77A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AE1EB9DC215C0F3400EC77A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AE1EB9DE215C0F3400EC77A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50E0D9161FE2D5FCD8A0A6B5 /* Pods-Droppin.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RQQM3FU688;
+				INFOPLIST_FILE = Droppin/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Velocity.Droppin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AE1EB9DF215C0F3400EC77A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 00A17D45726F6A18BE120266 /* Pods-Droppin.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RQQM3FU688;
+				INFOPLIST_FILE = Droppin/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Velocity.Droppin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		AE1EB9E1215C0F3400EC77A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E81F59323D36E3FB13608A24 /* Pods-DroppinTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RQQM3FU688;
+				INFOPLIST_FILE = DroppinTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Velocity.DroppinTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Droppin.app/Droppin";
+			};
+			name = Debug;
+		};
+		AE1EB9E2215C0F3400EC77A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E008400CF8761BF78D54164C /* Pods-DroppinTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RQQM3FU688;
+				INFOPLIST_FILE = DroppinTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Velocity.DroppinTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Droppin.app/Droppin";
+			};
+			name = Release;
+		};
+		AE1EB9E4215C0F3400EC77A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB207ADBB107870145AFDBEE /* Pods-DroppinUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RQQM3FU688;
+				INFOPLIST_FILE = DroppinUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Velocity.DroppinUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Droppin;
+			};
+			name = Debug;
+		};
+		AE1EB9E5215C0F3400EC77A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8D703179BD090A2CE5A1207 /* Pods-DroppinUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RQQM3FU688;
+				INFOPLIST_FILE = DroppinUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Velocity.DroppinUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Droppin;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AE1EB9AC215C0F3300EC77A1 /* Build configuration list for PBXProject "Droppin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE1EB9DB215C0F3400EC77A1 /* Debug */,
+				AE1EB9DC215C0F3400EC77A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AE1EB9DD215C0F3400EC77A1 /* Build configuration list for PBXNativeTarget "Droppin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE1EB9DE215C0F3400EC77A1 /* Debug */,
+				AE1EB9DF215C0F3400EC77A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AE1EB9E0215C0F3400EC77A1 /* Build configuration list for PBXNativeTarget "DroppinTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE1EB9E1215C0F3400EC77A1 /* Debug */,
+				AE1EB9E2215C0F3400EC77A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AE1EB9E3215C0F3400EC77A1 /* Build configuration list for PBXNativeTarget "DroppinUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE1EB9E4215C0F3400EC77A1 /* Debug */,
+				AE1EB9E5215C0F3400EC77A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AE1EB9A9215C0F3300EC77A1 /* Project object */;
+}
