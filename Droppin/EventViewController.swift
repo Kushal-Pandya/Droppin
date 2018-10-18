@@ -10,6 +10,8 @@ import UIKit
 
 class EventViewController: UIViewController {
 
+    @IBOutlet weak var createEventButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
