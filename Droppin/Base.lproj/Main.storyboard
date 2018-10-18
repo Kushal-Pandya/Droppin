@@ -58,7 +58,7 @@
                                     <segue destination="SUi-bm-mzI" kind="show" id="LI9-41-6ba"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9V9-uW-D2e">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9V9-uW-D2e" customClass="FBSDKLoginButton">
                                 <rect key="frame" x="40" y="203" width="295" height="40"/>
                                 <color key="backgroundColor" red="0.22552680969238281" green="0.34321779012680054" blue="0.58807015419006348" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -145,6 +145,7 @@
                         <viewLayoutGuide key="safeArea" id="qdV-Hg-oIQ"/>
                     </view>
                     <connections>
+                        <outlet property="fbLoginBtn" destination="9V9-uW-D2e" id="6Ca-Tx-WN0"/>
                         <outlet property="login_Email" destination="jCL-RM-G4K" id="CWQ-mE-wvf"/>
                         <outlet property="login_Password" destination="4cv-eR-wto" id="qJo-dL-Edx"/>
                     </connections>
@@ -432,7 +433,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Yth-1T-7ie"/>
+        <segue reference="LI9-41-6ba"/>
         <segue reference="Vls-zE-Se3"/>
     </inferredMetricsTieBreakers>
 </document>
