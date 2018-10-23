@@ -10,7 +10,7 @@ import UIKit
 import FirebaseUI
 import FBSDKLoginKit
 
-class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
+class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, FUIAuthDelegate {
     
     @IBOutlet weak var login_Email: UITextField!
     @IBOutlet weak var login_Password: UITextField!
@@ -33,6 +33,18 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         if let token = FBSDKAccessToken.current() {
             fetchProfile()
+        }
+        
+        
+        let parameters = ["attendants": "4", "dateStart": "Oct 18, 2018", "dateEnd": "Oct 20, 2018", "eventID": "10"]
+        Client.addEvent(parameters) { (results:[Any]) in
+            if results[0] as? Int == 200 {
+                //success
+                print("successfully added an event with id \(results[1] as? String)")
+            } else {
+                //error
+                print("successfully added an event")
+            }
         }
     }
     
