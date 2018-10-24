@@ -35,17 +35,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, FUIAuthDe
             fetchProfile()
         }
         
-        
-        let parameters = ["attendants": "4", "dateStart": "Oct 18, 2018", "dateEnd": "Oct 20, 2018", "eventID": "10"]
-        Client.addEvent(parameters) { (results:[Any]) in
-            if results[0] as? Int == 200 {
-                //success
-                print("successfully added an event with id \(results[1] as? String)")
-            } else {
-                //error
-                print("successfully added an event")
-            }
-        }
     }
     
     func fetchProfile() {
