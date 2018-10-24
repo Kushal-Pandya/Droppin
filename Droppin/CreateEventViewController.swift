@@ -81,11 +81,15 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
                     Client.addEvent(parameters) { (results:[Any]) in
                         if results[0] as? Int == 200 {
                             //success
-                            print("successfully added an event with id \(results[1] as? String)")
+                            let alert = UIAlertController(title: "Success", message: "Event Created", preferredStyle: UIAlertController.Style.alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            self.present(alert, animated: true, completion: nil)
                             
                         } else {
                             //error
-                            print("successfully added an event")
+                            let alert = UIAlertController(title: "Failure", message: "Failed to Create Event", preferredStyle: UIAlertController.Style.alert)
+                            alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
+                            self.present(alert, animated: true, completion: nil)
                         }
                     }
                 
@@ -96,9 +100,6 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
         }
         
         if let navigationController = self.navigationController {
-            let alert = UIAlertController(title: "Success", message: "Event Created", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
             
             navigationController.popViewController(animated: true)
         }
