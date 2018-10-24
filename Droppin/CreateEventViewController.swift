@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
@@ -24,19 +25,7 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
         
         self.eventCategoryPicker.delegate = self
         self.eventCategoryPicker.dataSource = self
-
-        // Do any additional setup after loading the view.
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -51,7 +40,66 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     @IBAction func dropEventTapped(_ sender: Any) {
+        if (!eventAddressField.text!.isEmpty) {
+            
+            // Ignore user actions since this will a blocking call
+            UIApplication.shared.beginIgnoringInteractionEvents()
+            
+            // Activity Indicator
+            let activityIndicator = UIActivityIndicatorView(style: .gray)
+            activityIndicator.center = self.view.center
+            activityIndicator.hidesWhenStopped = true
+            activityIndicator.startAnimating()
+            
+            self.view.addSubview(activityIndicator)
+            
+            // Create the search request
+            let searchRequest = MKLocalSearch.Request()
+            searchRequest.naturalLanguageQuery = eventAddressField.text
+            
+            let activeSearch = MKLocalSearch(request: searchRequest)
+            activeSearch.start { (response, error) in
+                
+                activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
+                
+                if response == nil {
+                    // Alert if no location found
+                    let alert = UIAlertController(title: "Location Not Found", message: "Please Try Again.", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+                else {
+                    // Get Data
+                    let latitude = response?.boundingRegion.center.latitude
+                    let longitude = response?.boundingRegion.center.longitude
+                    
+                    let parameters = ["eventName": self.eventNameField.text!,
+                                      "latitude": "\(String(describing: latitude!))",
+                        "longitude": "\(String(describing: longitude!))"]
+                    
+                    Client.addEvent(parameters) { (results:[Any]) in
+                        if results[0] as? Int == 200 {
+                            //success
+                            print("successfully added an event with id \(results[1] as? String)")
+                            
+                        } else {
+                            //error
+                            print("successfully added an event")
+                        }
+                    }
+                
+                }
+            }
+            
+            
+        }
+        
         if let navigationController = self.navigationController {
+            let alert = UIAlertController(title: "Success", message: "Event Created", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            
             navigationController.popViewController(animated: true)
         }
     }

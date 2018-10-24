@@ -21,7 +21,45 @@ class MapViewController: UIViewController {
         
         super.viewDidLoad()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        loadEvents()
+    }
 }
+
+extension MapViewController {
+    func loadEvents() {
+        
+        Client.getEvents() { (results:[Any]) in
+            if results[0] as? Int == 200 {
+                //success
+                print("successfully obtained events")
+                if let theResults = results[1] as? [String:Any] {
+                    print(theResults)
+                    for (key, value) in theResults{
+                        print(key)
+                        let annotation = MKPointAnnotation()
+                        annotation.title = key
+                        if let eventData = value as? [String:Any] {
+                            if let theLatitude = eventData["latitude"]! as? Double {
+                                if let theLongitude = eventData["longitude"]! as? Double {
+                                    annotation.coordinate = CLLocationCoordinate2DMake(theLatitude, theLongitude)
+                                    self.mapView.addAnnotation(annotation)
+                                }
+                            }
+                            
+                        }
+                    }
+                }
+                
+            } else {
+                //error
+                print("failed to obtain event")
+            }
+        }
+    }
+}
+
 
 extension MapViewController: UISearchBarDelegate {
     
@@ -70,7 +108,7 @@ extension MapViewController: UISearchBarDelegate {
                 // Zooming in
                 let coordinate = CLLocationCoordinate2DMake(latitude!, longitude!)
                 // 0.1 Delta is standard according to docs
-                let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+                let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
                 let region = MKCoordinateRegion(center: coordinate, span: span)
                 self.mapView.setRegion(region, animated: true)
             }

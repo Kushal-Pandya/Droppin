@@ -23,15 +23,24 @@ struct Client {
         
         let session = URLSession.shared
         session.dataTask(with: request) { (data, response, error) in
-            //            if let response = response {
-            //                print(response)
-            //            }
             
             var dataArray:[Any] = []
+
+            if let response = response {
+                if let httpResponse = response as? HTTPURLResponse {
+//                    print("statusCode: \(httpResponse.statusCode)")
+                    dataArray.append(httpResponse.statusCode)
+                }
+            }
+            
             if let data = data {
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
-                        //print (json)
+//                        print("---------------------------------------------------")
+//                        print (json)
+//                        print("---------------------------------------------------")
+                        
+                        dataArray.append(json)
                     }
                 } catch {
                     print(error.localizedDescription)
@@ -113,9 +122,13 @@ struct Client {
     //post calls
     
     static func addEvent(_ parameters: [String:String], completion: @escaping ([Any]) -> ()) {
-        //need parameters: ["attendants": "4", "dateStart": "Oct 18, 2018", "dateEnd": "Oct 20, 2018", "eventID": "4"]
         let pathExtension = "events.json"
         postCall(parameters, pathExtension) { (results:[Any]) in completion(results)}
+    }
+    
+    static func getEvents(completion: @escaping ([Any]) -> ()) {
+        let pathExtension = "events.json"
+        getCall(pathExtension) { (results:[Any]) in completion(results)}
     }
     
 }
