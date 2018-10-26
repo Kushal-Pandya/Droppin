@@ -10,6 +10,7 @@
 		2D841D4485905204008C2000 /* Pods_Droppin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD91DB780EE48624242912CB /* Pods_Droppin.framework */; };
 		412C7F8A2178F4D400C8A1CC /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412C7F892178F4D400C8A1CC /* Client.swift */; };
 		9BA0B3BB217796C4005431A9 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA0B3BA217796C4005431A9 /* CreateEventViewController.swift */; };
+		9BC7E31721829E93004563E3 /* EventCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7E31621829E93004563E3 /* EventCategories.swift */; };
 		A3B24435F08B5CBEA0606DC5 /* Pods_DroppinUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98CEE1F312BC374677B8D9A8 /* Pods_DroppinUITests.framework */; };
 		AE19E206215EF9E100EF6CD2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE19E205215EF9E100EF6CD2 /* GoogleService-Info.plist */; };
 		AE1EB9B5215C0F3300EC77A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1EB9B4215C0F3300EC77A1 /* AppDelegate.swift */; };
@@ -51,6 +52,7 @@
 		50E0D9161FE2D5FCD8A0A6B5 /* Pods-Droppin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Droppin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Droppin/Pods-Droppin.debug.xcconfig"; sourceTree = "<group>"; };
 		98CEE1F312BC374677B8D9A8 /* Pods_DroppinUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DroppinUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BA0B3BA217796C4005431A9 /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
+		9BC7E31621829E93004563E3 /* EventCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCategories.swift; sourceTree = "<group>"; };
 		A501EAC882453C5886418F5B /* Pods_DroppinTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DroppinTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8D703179BD090A2CE5A1207 /* Pods-DroppinUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DroppinUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DroppinUITests/Pods-DroppinUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AB207ADBB107870145AFDBEE /* Pods-DroppinUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DroppinUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DroppinUITests/Pods-DroppinUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				AE7B229B215F155200A2899F /* MapViewController.swift */,
 				AE7B229D215F156600A2899F /* EventViewController.swift */,
 				9BA0B3BA217796C4005431A9 /* CreateEventViewController.swift */,
+				9BC7E31621829E93004563E3 /* EventCategories.swift */,
 				AE7B229F215F15AD00A2899F /* SettingsViewController.swift */,
 				AE1EB9BF215C0F3400EC77A1 /* Assets.xcassets */,
 				AE1EB9C1215C0F3400EC77A1 /* LaunchScreen.storyboard */,
@@ -460,6 +463,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BC7E31721829E93004563E3 /* EventCategories.swift in Sources */,
 				AE7B229E215F156600A2899F /* EventViewController.swift in Sources */,
 				AE34ED052166B0B5002CDF93 /* ForgotPasswordViewController.swift in Sources */,
 				AE7B229A215F153600A2899F /* SignUpViewController.swift in Sources */,
