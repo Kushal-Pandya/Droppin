@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum eventCategory: Int {
+public enum eventCategory: Int {
     case sportsAndFitness
     case funAndParties
     case recreationAndLeisure
@@ -19,3 +19,13 @@ enum eventCategory: Int {
     case corporate
     case political
 }
+
+public let eventCategories = [
+    "Sports & Fitness",
+    "Fun & Parties",
+    "Recreation & Leisure", "Education",
+    "Socialwork","Casual",
+    "Arts & Culture",
+    "Corporate",
+    "Political"
+]

@@ -751,7 +751,10 @@
                     </view>
                     <connections>
                         <outlet property="applyButton" destination="26L-rt-dRc" id="azD-vd-dl3"/>
+                        <outlet property="categoryTextField" destination="fxG-sM-XPA" id="ShU-La-Fng"/>
                         <outlet property="closeModalButton" destination="IAQ-Dl-i7s" id="cdd-Kz-kJi"/>
+                        <outlet property="dateTextField" destination="Xta-F7-zh2" id="onq-if-e83"/>
+                        <outlet property="mode" destination="qri-NK-7DC" id="PxT-aY-7pq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="415-2C-35O" userLabel="First Responder" sceneMemberID="firstResponder"/>
