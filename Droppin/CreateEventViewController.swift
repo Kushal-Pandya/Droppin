@@ -67,6 +67,10 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
             eventAddressField.text = "custom"
         }
         else if (eventAddressField.text!.isEmpty) {
+            // Alert if address empty
+            let alert = UIAlertController(title: "Error", message: "Address Field Empty.", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             return
         }
         
@@ -83,6 +87,7 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
         
         // Create the search request
         let searchRequest = MKLocalSearch.Request()
+        // this will be "custom" if toggled switch
         searchRequest.naturalLanguageQuery = eventAddressField.text
         
         let activeSearch = MKLocalSearch(request: searchRequest)
