@@ -30,33 +30,46 @@ class MapViewController: UIViewController {
 extension MapViewController {
     func loadEvents() {
         
+        let activityIndicator = UIActivityIndicatorView(style: .gray)
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
+        
         Client.getEvents() { (results:[Any]) in
             if results[0] as? Int == 200 {
-                //success
-                print("successfully obtained events")
+                
                 if let theResults = results[1] as? [String:Any] {
-                    print(theResults)
-                    for (key, value) in theResults{
-                        print(key)
+                    for (_, value) in theResults{
+                        
                         let annotation = MKPointAnnotation()
-                        annotation.title = key
+                        
                         if let eventData = value as? [String:Any] {
-                            if let theLatitude = eventData["latitude"]! as? Double {
-                                if let theLongitude = eventData["longitude"]! as? Double {
-                                    annotation.coordinate = CLLocationCoordinate2DMake(theLatitude, theLongitude)
-                                    self.mapView.addAnnotation(annotation)
-                                }
+                            
+                            if let eventTitle = eventData["eventName"] as? String {
+                                annotation.title = eventTitle
+                            }
+                            if let description = eventData["description"] as? String {
+                                annotation.subtitle = description
                             }
                             
+                            let theLatitude = Double((eventData["latitude"] as! NSString).floatValue)
+                            let theLongitude = Double((eventData["longitude"] as! NSString).floatValue)
+                            
+                            annotation.coordinate = CLLocationCoordinate2DMake(theLatitude, theLongitude)
+                            self.mapView.addAnnotation(annotation)
                         }
                     }
                 }
                 
             } else {
-                //error
-                print("failed to obtain event")
+                // Alert if failed to obtain events
+                let alert = UIAlertController(title: "Failure", message: "Failed to Obtain Events.", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
         }
+
+        activityIndicator.stopAnimating()
     }
 }
 
