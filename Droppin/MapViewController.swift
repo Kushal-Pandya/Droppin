@@ -76,7 +76,13 @@ extension MapViewController {
 
 extension MapViewController: UISearchBarDelegate {
     
-//    func search
+    func searchBarResultsListButtonClicked(_ searchBar: UISearchBar) {
+        if let filtersViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(
+            withIdentifier: "filtersViewController") as? FiltersViewController {
+            self.present(filtersViewController, animated: true, completion: nil)
+        }
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         // Ignore user actions since this will a blocking call
@@ -111,12 +117,6 @@ extension MapViewController: UISearchBarDelegate {
                 // Get Data
                 let latitude = response?.boundingRegion.center.latitude
                 let longitude = response?.boundingRegion.center.longitude
-                
-                // Sample code to create Pins/Annotations at this search location
-//                let annotation = MKPointAnnotation()
-//                annotation.title = searchBar.text
-//                annotation.coordinate = CLLocationCoordinate2DMake(latitude!, longitude!)
-//                self.mapView.addAnnotation(annotation)
                 
                 // Zooming in
                 let coordinate = CLLocationCoordinate2DMake(latitude!, longitude!)

@@ -19,15 +19,6 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
     @IBOutlet weak var eventDescription: UITextView!
     @IBOutlet weak var submitEventButton: UIButton!
     
-    let eventCategories = [
-        "Sports & Fitness",
-        "Fun & Parties",
-        "Recreation & Leisure", "Education",
-        "Socialwork","Casual",
-        "Arts & Culture",
-        "Corporate",
-        "Political"
-    ]
     var eventCategory: Int = 0
     
     override func viewDidLoad() {
