@@ -47,8 +47,13 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
     @IBAction func currentLocationToggled(_ sender: UISwitch) {
         if (sender.isOn == true) {
             eventAddressField.isUserInteractionEnabled = false
+            let addressObject = UserDefaults.standard.object(forKey: "address")
+            if let address = addressObject as? String {
+                eventAddressField.text = String(address)
+            }
         } else {
             eventAddressField.isUserInteractionEnabled = true
+            eventAddressField.text = ""
         }
     }
     

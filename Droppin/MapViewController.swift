@@ -13,6 +13,8 @@ class MapViewController: UIViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var mapView: MKMapView!
+    private let locationManager = CLLocationManager()
+    let regionInMeters: Double = 10000
     
     override func viewDidLoad() {
         searchBar.delegate = self
@@ -20,10 +22,55 @@ class MapViewController: UIViewController {
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         
         super.viewDidLoad()
+        checkLocationServices()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         loadEvents()
+    }
+    
+    func setupLocationManager() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    }
+    
+    
+    func centerViewOnUserLocation() {
+        if let location = locationManager.location?.coordinate {
+            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+            mapView.setRegion(region, animated: true)
+        }
+    }
+    
+    
+    func checkLocationServices() {
+        if CLLocationManager.locationServicesEnabled() {
+            setupLocationManager()
+            checkLocationAuthorization()
+        } else {
+            // Show alert letting the user know they have to turn this on.
+        }
+    }
+    
+    
+    func checkLocationAuthorization() {
+        switch CLLocationManager.authorizationStatus() {
+        case .authorizedWhenInUse:
+            mapView.showsUserLocation = true
+            centerViewOnUserLocation()
+            locationManager.startUpdatingLocation()
+            break
+        case .denied:
+            // Show alert instructing them how to turn on permissions
+            break
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .restricted:
+            // Show an alert letting them know what's up
+            break
+        case .authorizedAlways:
+            break
+        }
     }
 }
 
@@ -52,11 +99,11 @@ extension MapViewController {
                                 annotation.subtitle = description
                             }
                             
-                            let theLatitude = Double((eventData["latitude"] as! NSString).floatValue)
-                            let theLongitude = Double((eventData["longitude"] as! NSString).floatValue)
-                            
-                            annotation.coordinate = CLLocationCoordinate2DMake(theLatitude, theLongitude)
-                            self.mapView.addAnnotation(annotation)
+//                            let theLatitude = Double((eventData["latitude"] as! NSString).floatValue)
+//                            let theLongitude = Double((eventData["longitude"] as! NSString).floatValue)
+//                            
+//                            annotation.coordinate = CLLocationCoordinate2DMake(theLatitude, theLongitude)
+//                            self.mapView.addAnnotation(annotation)
                         }
                     }
                 }
@@ -126,5 +173,46 @@ extension MapViewController: UISearchBarDelegate {
                 self.mapView.setRegion(region, animated: true)
             }
         }
+    }
+}
+
+extension MapViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        let region = MKCoordinateRegion.init(center: location.coordinate, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+        mapView.setRegion(region, animated: true)
+        
+        CLGeocoder().reverseGeocodeLocation(location) { (placemarks, error) in
+            if let _ = error {
+                //TODO: Show alert informing the user
+                return
+            }
+            
+            guard let placemark = placemarks?.first else {
+                //TODO: Show alert informing the user
+                return
+            }
+            
+            let streetNumber = placemark.subThoroughfare ?? ""
+            let streetName = placemark.thoroughfare ?? ""
+            let postalCode = placemark.postalCode ?? ""
+            let city = placemark.locality ?? ""
+            let province = placemark.administrativeArea ?? ""
+            // let country = placemark.country ?? ""
+            // let countryCode = placemark.isoCountryCode ?? ""
+            
+            let address = "\(streetNumber) \(streetName), \(postalCode), \(city), \(province)";
+            print(address)
+            
+            UserDefaults.standard.set(address, forKey: "address")
+            
+            
+        }
+    }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        checkLocationAuthorization()
     }
 }
