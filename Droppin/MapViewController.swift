@@ -16,6 +16,9 @@ class MapViewController: UIViewController {
     private let locationManager = CLLocationManager()
     let regionInMeters: Double = 10000
     
+    @IBAction func relocateButtonTapped(_ sender: Any) {
+        locationManager.startUpdatingLocation()
+    }
     override func viewDidLoad() {
         searchBar.delegate = self
         
@@ -99,11 +102,11 @@ extension MapViewController {
                                 annotation.subtitle = description
                             }
                             
-//                            let theLatitude = Double((eventData["latitude"] as! NSString).floatValue)
-//                            let theLongitude = Double((eventData["longitude"] as! NSString).floatValue)
-//                            
-//                            annotation.coordinate = CLLocationCoordinate2DMake(theLatitude, theLongitude)
-//                            self.mapView.addAnnotation(annotation)
+                            let theLatitude = Double((eventData["latitude"] as! NSString).floatValue)
+                            let theLongitude = Double((eventData["longitude"] as! NSString).floatValue)
+                            
+                            annotation.coordinate = CLLocationCoordinate2DMake(theLatitude, theLongitude)
+                            self.mapView.addAnnotation(annotation)
                         }
                     }
                 }
@@ -182,6 +185,7 @@ extension MapViewController: CLLocationManagerDelegate {
         guard let location = locations.last else { return }
         let region = MKCoordinateRegion.init(center: location.coordinate, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
         mapView.setRegion(region, animated: true)
+        locationManager.stopUpdatingLocation()
         
         CLGeocoder().reverseGeocodeLocation(location) { (placemarks, error) in
             if let _ = error {
@@ -199,10 +203,10 @@ extension MapViewController: CLLocationManagerDelegate {
             let postalCode = placemark.postalCode ?? ""
             let city = placemark.locality ?? ""
             let province = placemark.administrativeArea ?? ""
-            // let country = placemark.country ?? ""
+            let country = placemark.country ?? ""
             // let countryCode = placemark.isoCountryCode ?? ""
             
-            let address = "\(streetNumber) \(streetName), \(postalCode), \(city), \(province)";
+            let address = "\(streetNumber) \(streetName), \(postalCode), \(city), \(province), \(country)";
             print(address)
             
             UserDefaults.standard.set(address, forKey: "address")

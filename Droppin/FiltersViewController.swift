@@ -15,7 +15,6 @@ class FiltersViewController: UIViewController {
     @IBOutlet weak var mode: UISegmentedControl!
     @IBOutlet weak var closeModalButton: UIButton!
     @IBOutlet weak var applyButton: UIButton!
-    @IBOutlet weak var tabButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +23,7 @@ class FiltersViewController: UIViewController {
         createDatePicker()
     }
     
-    @IBAction func tapButtonTapped(_ sender: UIButton) {
-        
+    @IBAction func backgroundButtonTapped(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     @IBAction func closeButtonTapped(_ sender: UIButton) {

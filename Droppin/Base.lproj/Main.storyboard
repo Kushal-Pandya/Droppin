@@ -597,6 +597,13 @@
                                     <string>Private</string>
                                 </scopeButtonTitles>
                             </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mqe-DU-YqO">
+                                <rect key="frame" x="318" y="557" width="30" height="30"/>
+                                <state key="normal" image="define_location"/>
+                                <connections>
+                                    <action selector="relocateButtonTapped:" destination="tQa-2T-Klu" eventType="touchUpInside" id="2wC-bP-HtV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -606,6 +613,8 @@
                             <constraint firstItem="tfl-my-vg3" firstAttribute="top" secondItem="hyb-c4-Iar" secondAttribute="top" constant="55" id="MaW-jj-wqq"/>
                             <constraint firstItem="zYN-Dt-9PY" firstAttribute="top" secondItem="hyb-c4-Iar" secondAttribute="top" id="Nt3-8A-U02"/>
                             <constraint firstItem="hyb-c4-Iar" firstAttribute="trailing" secondItem="tfl-my-vg3" secondAttribute="trailing" constant="27" id="SoN-bH-ZuB"/>
+                            <constraint firstItem="hyb-c4-Iar" firstAttribute="bottom" secondItem="mqe-DU-YqO" secondAttribute="bottom" constant="31" id="XXj-3K-NEn"/>
+                            <constraint firstItem="hyb-c4-Iar" firstAttribute="trailing" secondItem="mqe-DU-YqO" secondAttribute="trailing" constant="27" id="vtM-yX-myY"/>
                             <constraint firstItem="zYN-Dt-9PY" firstAttribute="leading" secondItem="hyb-c4-Iar" secondAttribute="leading" id="xfY-z2-QcA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hyb-c4-Iar"/>
@@ -653,7 +662,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="tapButtonTapped:" destination="jyS-SS-lYd" eventType="touchUpInside" id="lVT-Bx-0Hg"/>
+                                    <action selector="backgroundButtonTapped:" destination="jyS-SS-lYd" eventType="touchUpInside" id="sX2-g1-RJc"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f9B-cI-gZN">
@@ -763,7 +772,6 @@
                         <outlet property="closeModalButton" destination="IAQ-Dl-i7s" id="cdd-Kz-kJi"/>
                         <outlet property="dateTextField" destination="Xta-F7-zh2" id="onq-if-e83"/>
                         <outlet property="mode" destination="qri-NK-7DC" id="PxT-aY-7pq"/>
-                        <outlet property="tabButton" destination="DJk-7w-tvW" id="Vzi-4d-gUB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="415-2C-35O" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -790,6 +798,9 @@
             <point key="canvasLocation" x="3813.5999999999999" y="-995.35232383808102"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="define_location" width="30" height="30"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="LI9-41-6ba"/>
         <segue reference="Vls-zE-Se3"/>
