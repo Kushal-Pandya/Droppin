@@ -11,6 +11,7 @@ import MapKit
 
 class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    @IBOutlet weak var eventMode: UISegmentedControl!
     @IBOutlet weak var eventNameField: UITextField!
     @IBOutlet weak var useCurrentLocation: UISwitch!
     @IBOutlet weak var eventAddressField: UITextField!
@@ -100,6 +101,7 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 let longitude = response?.boundingRegion.center.longitude
                 
                 let parameters = [
+                    "eventType": self.eventMode.titleForSegment(at: self.eventMode.selectedSegmentIndex)!,
                     "eventName": self.eventNameField.text!,
                     "address": self.eventAddressField.text!,
                     "description": self.eventDescription.text!,
