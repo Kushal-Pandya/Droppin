@@ -60,7 +60,7 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
     @IBAction func createEventPressed(_ sender: UIButton) {
         if (useCurrentLocation.isOn) {
             //use current location
-            eventAddressField.text = "custom"
+            // eventAddressField.text = "custom"
         }
         else if (eventAddressField.text!.isEmpty) {
             // Alert if address empty
