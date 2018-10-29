@@ -4,29 +4,106 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp();
 
-// Take the text parameter passed to this HTTP endpoint and insert it into the
-// Realtime Database under the path /messages/:pushId/original
-exports.addMessage = functions.https.onRequest((req, res) => {
-  // Grab the text parameter.
-  const original = req.query.text;
-  // Push the new message into the Realtime Database using the Firebase Admin SDK.
-  return admin.database().ref('/messages').push({original: original}).then((snapshot) => {
-    // Redirect with 303 SEE OTHER to the URL of the pushed object in the Firebase console.
-    return res.redirect(303, snapshot.ref.toString());
+exports.searchByCategory = functions.https.onCall((data) => {
+  const categoryID = data.categoryID;
+
+  var address = "";
+  var dateStart = "";
+  var description = "";
+  var eventName = "";
+  var latitude = "";
+  var longitude = "";
+  var key = "";
+  var obj = {};
+  var eventList = [];
+  var i = 0;
+
+  var db = admin.database();
+  var ref = db.ref("events");
+  ref.orderByChild("category").equalTo(categoryID).on("child_added", function(snapshot){
+      address = snapshot.val().address;
+      dateStart = snapshot.val().dateStart;
+      eventName = snapshot.val().eventName;
+      description = snapshot.val().description;
+      latitude = snapshot.val().latitude;
+      longitude = snapshot.val().longitude;
+      key = snapshot.key;
+      obj = {
+        "category": categoryID,
+        "address": address,
+        "dateStart": dateStart,
+        "eventName": eventName,
+        "description": description,
+        "latitude": latitude,
+        "longitude": longitude,
+      };
+      eventList[i] = obj;
+      i = i +1;
   });
+
+  return {
+    eventList,
+  };
 });
 
-exports.addEvent = functions.https.onRequest((req, res) => {
-  const attendants = req.query.attendants;
-  const dateStart = req.query.dateStart;
-  const dateEnd = req.query.dateEnd;
-  const eventID = req.query.eventID;
+exports.searchByDate = functions.https.onCall((data) => {
+  const eventDate = data.eventDate;
 
-  return admin.database().ref('/events').push({attendants: attendants, dateStart: dateStart, dateEnd: dateEnd, eventID: eventID}).then((snapshot) => {
-    return res.redirect(303, snapshot.ref.toString());
+  var db = admin.database();
+  var ref = db.ref("events");
+
+  var obj = {};
+  var eventList = [];
+  var i = 0;
+
+  ref.orderByChild("dateStart").startAt(eventDate).endAt(eventDate+"\uf8ff").on("child_added", function(snapshot){
+    obj = {
+      "category": snapshot.val().category,
+      "address": snapshot.val().address,
+      "dateStart": snapshot.val().dateStart,
+      "eventName": snapshot.val().eventName,
+      "description": snapshot.val().description,
+      "latitude": snapshot.val().latitude,
+      "longitude": snapshot.val().longitude,
+    };
+    eventList[i] = obj;
+    i = i + 1;
   });
+
+  return {
+    eventList,
+  };
 });
+
+exports.searchByPrivate = functions.https.onCall((data) => {
+  const privateEvent = data.privateEvent;
+
+  var db = admin.database();
+  var ref = db.ref("events");
   
+  var obj = {};
+  var eventList = [];
+  var i = 0;
+
+  ref.orderByChild("eventType").equalTo(privateEvent).on("child_added", function(snapshot){
+    obj = {
+      "category": snapshot.val().category,
+      "address": snapshot.val().address,
+      "dateStart": snapshot.val().dateStart,
+      "eventName": snapshot.val().eventName,
+      "eventType": snapshot.val().eventType,
+      "description": snapshot.val().description,
+      "latitude": snapshot.val().latitude,
+      "longitude": snapshot.val().longitude,
+    };
+    eventList[i] = obj;
+    i = i + 1;
+  });
+
+  return {
+    eventList,
+  };
+});
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
