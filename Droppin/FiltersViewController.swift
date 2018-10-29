@@ -34,6 +34,9 @@ class FiltersViewController: UIViewController {
         createDatePicker()
     }
     
+    @IBAction func backgroundButtonTapped(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
     @IBAction func closeButtonTapped(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
