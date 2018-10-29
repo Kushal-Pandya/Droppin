@@ -10,6 +10,7 @@ target 'Droppin' do
   pod 'IQKeyboardManagerSwift'
   pod 'FirebaseUI/Auth'
   pod 'FirebaseUI/Facebook'
+  pod 'Firebase/Functions'
 
   target 'DroppinTests' do
     inherit! :search_paths

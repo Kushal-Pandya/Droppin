@@ -129,6 +129,8 @@ extension MapViewController: UISearchBarDelegate {
     func searchBarResultsListButtonClicked(_ searchBar: UISearchBar) {
         if let filtersViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(
             withIdentifier: "filtersViewController") as? FiltersViewController {
+            
+            filtersViewController.filtersDelegate = self
             self.present(filtersViewController, animated: true, completion: nil)
         }
     }
@@ -178,6 +180,29 @@ extension MapViewController: UISearchBarDelegate {
         }
     }
 }
+
+extension MapViewController: FiltersDelegate {
+    func didTapApplyFilters(eventList: [Any]) {
+        self.mapView.removeAnnotations(self.mapView.annotations)
+
+        for event in eventList {
+            let annotation = MKPointAnnotation()
+
+            if let theEvent = event as? [String:Any] {
+                let latitude = Double((theEvent["latitude"] as! NSString).floatValue)
+                let longitude = Double((theEvent["longitude"] as! NSString).floatValue)
+                
+                if let eventTitle = theEvent["eventName"] as? String {
+                    annotation.title = eventTitle
+                }
+                if let description = theEvent["description"] as? String {
+                    annotation.subtitle = description
+                }
+                annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+                self.mapView.addAnnotation(annotation)
+            }
+        }
+    }
 
 extension MapViewController: CLLocationManagerDelegate {
     
