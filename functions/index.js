@@ -105,6 +105,52 @@ exports.searchByPrivate = functions.https.onCall((data) => {
   };
 });
 
+exports.searchByFilters = functions.https.onCall((data) => {
+  var categoryID = data.categoryID;
+  var eventDate = data.eventDate;
+  var eventType = data.eventType;
+
+  if(categoryID === ""){
+    categoryID = null;
+  }
+
+  if(eventDate === ""){
+    eventDate = null;
+  }
+
+  var db = admin.database();
+  var ref = db.ref("events");
+  
+  var obj = {};
+  var eventList = [];
+  var i = 0;
+  var category = "";
+  var status = "";
+
+  ref.orderByChild("dateStart").startAt(eventDate).endAt(eventDate+"\uf8ff").on("child_added", function(snapshot){
+    category = snapshot.val().category;
+    status = snapshot.val().eventType;
+    if((category === categoryID || categoryID === null) && (status === eventType)) {
+      obj = {
+        "category": snapshot.val().category,
+        "address": snapshot.val().address,
+        "dateStart": snapshot.val().dateStart,
+        "eventName": snapshot.val().eventName,
+        "eventType": snapshot.val().eventType,
+        "description": snapshot.val().description,
+        "latitude": snapshot.val().latitude,
+        "longitude": snapshot.val().longitude,
+      };
+      eventList[i] = obj;
+      i = i + 1;
+    }
+  });
+
+  return {
+    eventList,
+  };
+});
+
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
