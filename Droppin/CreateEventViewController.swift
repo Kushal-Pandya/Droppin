@@ -11,6 +11,7 @@ import MapKit
 
 class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    @IBOutlet weak var eventMode: UISegmentedControl!
     @IBOutlet weak var eventNameField: UITextField!
     @IBOutlet weak var useCurrentLocation: UISwitch!
     @IBOutlet weak var eventAddressField: UITextField!
@@ -58,11 +59,7 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     @IBAction func createEventPressed(_ sender: UIButton) {
-        if (useCurrentLocation.isOn) {
-            //use current location
-            // eventAddressField.text = "custom"
-        }
-        else if (eventAddressField.text!.isEmpty) {
+        if (eventAddressField.text!.isEmpty) {
             // Alert if address empty
             let alert = UIAlertController(title: "Error", message: "Address Field Empty.", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -104,6 +101,7 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 let longitude = response?.boundingRegion.center.longitude
                 
                 let parameters = [
+                    "eventType": self.eventMode.titleForSegment(at: self.eventMode.selectedSegmentIndex)!,
                     "eventName": self.eventNameField.text!,
                     "address": self.eventAddressField.text!,
                     "description": self.eventDescription.text!,
@@ -116,7 +114,12 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
                     if results[0] as? Int == 200 {
                         //success
                         let alert = UIAlertController(title: "Success", message: "Event Created", preferredStyle: UIAlertController.Style.alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {(alert: UIAlertAction!) in
+                            if let navigationController = self.navigationController {
+                                navigationController.popViewController(animated: true)
+                            }
+                        }))
+                        
                         self.present(alert, animated: true, completion: nil)
                         
                     } else {
@@ -128,9 +131,5 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 }
             }
         }
-        
-//        if let navigationController = self.navigationController {
-//            navigationController.popViewController(animated: true)
-//        }
     }
 }

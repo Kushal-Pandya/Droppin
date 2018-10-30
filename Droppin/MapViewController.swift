@@ -102,6 +102,13 @@ extension MapViewController {
                             if let description = eventData["description"] as? String {
                                 annotation.subtitle = description
                             }
+                            if let dateStart = eventData["dateStart"] as? String {
+                                annotation.subtitle = annotation.subtitle! + "\n  Date: " + dateStart
+                            }
+                            if let categoryIndex = eventData["category"] as? String {
+                                let category = eventCategories[Int(categoryIndex)!]
+                                annotation.subtitle = annotation.subtitle! + "\n Category: " + category
+                            }
                             
                             let theLatitude = Double((eventData["latitude"] as! NSString).floatValue)
                             let theLongitude = Double((eventData["longitude"] as! NSString).floatValue)
@@ -146,6 +153,8 @@ extension MapViewController: UISearchBarDelegate {
     func searchBarResultsListButtonClicked(_ searchBar: UISearchBar) {
         if let filtersViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(
             withIdentifier: "filtersViewController") as? FiltersViewController {
+            
+            filtersViewController.filtersDelegate = self
             self.present(filtersViewController, animated: true, completion: nil)
         }
     }
@@ -196,6 +205,38 @@ extension MapViewController: UISearchBarDelegate {
     }
 }
 
+extension MapViewController: FiltersDelegate {
+    func didTapApplyFilters(eventList: [Any]) {
+        self.mapView.removeAnnotations(self.mapView.annotations)
+
+        for event in eventList {
+            let annotation = MKPointAnnotation()
+            annotation.subtitle = ""
+
+            if let theEvent = event as? [String:Any] {
+                let latitude = Double((theEvent["latitude"] as! NSString).floatValue)
+                let longitude = Double((theEvent["longitude"] as! NSString).floatValue)
+                
+                if let eventTitle = theEvent["eventName"] as? String {
+                    annotation.title = eventTitle
+                }
+                if let description = theEvent["description"] as? String {
+                    annotation.subtitle = description
+                }
+                if let dateStart = theEvent["dateStart"] as? String {
+                    annotation.subtitle = annotation.subtitle! + "\n Date: " + dateStart
+                }
+                if let categoryIndex = theEvent["category"] as? String {
+                    let category = eventCategories[Int(categoryIndex)!]
+                    annotation.subtitle = annotation.subtitle! + "\n Category: " + category
+                }
+                annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+                self.mapView.addAnnotation(annotation)
+            }
+        }
+    }
+}
+
 extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -227,11 +268,8 @@ extension MapViewController: CLLocationManagerDelegate {
             print(address)
             
             UserDefaults.standard.set(address, forKey: "address")
-            
-            
         }
     }
-    
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()

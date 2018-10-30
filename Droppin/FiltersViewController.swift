@@ -7,6 +7,12 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFunctions
+
+protocol FiltersDelegate {
+    func didTapApplyFilters(eventList: [Any])
+}
 
 class FiltersViewController: UIViewController {
     
@@ -15,6 +21,11 @@ class FiltersViewController: UIViewController {
     @IBOutlet weak var mode: UISegmentedControl!
     @IBOutlet weak var closeModalButton: UIButton!
     @IBOutlet weak var applyButton: UIButton!
+    
+    var filtersDelegate: FiltersDelegate!
+    var eventList: [Any] = []
+    
+    lazy var functions = Functions.functions()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +42,26 @@ class FiltersViewController: UIViewController {
     }
     
     @IBAction func applyButtonTapped(_ sender: UIButton) {
-        // change this to perform API call for filters
-        dismiss(animated: true, completion: nil)
+
+        var categoryIndex = ""
+        if let theIndex = eventCategories.firstIndex(of: categoryTextField.text!) {
+            categoryIndex = String(theIndex)
+        }
+        
+        let data = ["categoryID": categoryIndex, "eventDate": dateTextField.text!, "eventType": mode.titleForSegment(at: mode.selectedSegmentIndex)!]
+            functions.httpsCallable("searchByFilters").call(data) { (result, error) in
+                if let error = error as NSError? {
+                    let alert = UIAlertController(title: "Failure", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    return
+                }
+                self.eventList = ((result?.data as? [String:Any])?["eventList"] as? [Any])!
+            }
+
+        dismiss(animated: true) {
+            self.filtersDelegate.didTapApplyFilters(eventList: self.eventList)
+        }
     }
 }
 
@@ -76,7 +105,7 @@ extension FiltersViewController {
     
     @objc func dateChanged(datePicker: UIDatePicker) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         
         dateTextField.text = dateFormatter.string(from: datePicker.date)
     }
