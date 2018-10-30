@@ -21,6 +21,7 @@ class MapViewController: UIViewController {
     }
     override func viewDidLoad() {
         searchBar.delegate = self
+        mapView.delegate = self
         
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         
@@ -106,7 +107,23 @@ extension MapViewController {
                             let theLongitude = Double((eventData["longitude"] as! NSString).floatValue)
                             
                             annotation.coordinate = CLLocationCoordinate2DMake(theLatitude, theLongitude)
-                            self.mapView.addAnnotation(annotation)
+                            
+                            let eventCategory = eventData["category"] as? String
+                            let eventDate = eventData["dateStart"] as? String
+                            let eventLocation = eventData["address"] as? String
+                            
+                            
+                            
+                            // show artwork on map
+                            let artwork = Artwork(title: annotation.title!,
+                                                  subtitle: annotation.subtitle!,
+                                                  date: eventDate!,
+                                                  category: eventCategory!,
+                                                  location: eventLocation!,
+                                                  coordinate: CLLocationCoordinate2D(latitude: theLatitude, longitude: theLongitude))
+                            //mapView.addAnnotation(artwork)
+                            
+                            self.mapView.addAnnotation(artwork)
                         }
                     }
                 }
@@ -218,5 +235,45 @@ extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()
+    }
+}
+
+extension MapViewController: MKMapViewDelegate {
+    // 1
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        // 2
+        guard let annotation = annotation as? Artwork else { return nil }
+        // 3
+        let identifier = "marker"
+        var view: MKMarkerAnnotationView
+        // 4
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+            as? MKMarkerAnnotationView {
+            dequeuedView.annotation = annotation
+            view = dequeuedView
+        } else {
+            // 5
+            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.canShowCallout = true
+            view.calloutOffset = CGPoint(x: -5, y: 5)
+            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        }
+        return view
+    }
+    
+
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView,
+                 calloutAccessoryControlTapped control: UIControl) {
+        let annotation = view.annotation as! Artwork
+        if let eventDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(
+            withIdentifier: "eventDetailsViewController") as? EventDetailsViewController {
+            eventDetailsViewController.textTitle = ((annotation.title)!)
+            eventDetailsViewController.textDescription = ((annotation.subtitle)!)
+            eventDetailsViewController.textDate = annotation.date!
+            eventDetailsViewController.textCategory = annotation.category!
+            eventDetailsViewController.textLocation = annotation.location!
+            self.present(eventDetailsViewController, animated: true, completion: nil)
+            
+        }
     }
 }
