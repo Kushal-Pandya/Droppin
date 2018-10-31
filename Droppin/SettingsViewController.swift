@@ -9,22 +9,25 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
-
+    
+    @IBOutlet weak var signOutButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func signOutTapped(_ sender: UIButton) {
+        let alert = UIAlertController(
+            title: "Are you sure you want to sign out?",
+            message: "You will need to login again to continue using Droppin",
+            preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: {(alert: UIAlertAction!) in
+            self.performSegue(withIdentifier: "unwindToLoginViewController", sender: self)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
-    */
-
 }

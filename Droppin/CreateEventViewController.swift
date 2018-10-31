@@ -15,6 +15,7 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
     @IBOutlet weak var eventNameField: UITextField!
     @IBOutlet weak var useCurrentLocation: UISwitch!
     @IBOutlet weak var eventAddressField: UITextField!
+    @IBOutlet weak var inviteesField: UITextField!
     @IBOutlet weak var eventStartTime: UIDatePicker!
     @IBOutlet weak var eventCategoryPicker: UIPickerView!
     @IBOutlet weak var eventDescription: UITextView!
@@ -59,12 +60,18 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
     }
     
     @IBAction func createEventPressed(_ sender: UIButton) {
+        self.view.endEditing(true)
+        
         if (eventAddressField.text!.isEmpty) {
             // Alert if address empty
             let alert = UIAlertController(title: "Error", message: "Address Field Empty.", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             return
+        }
+        
+        if (inviteesField.text!.isEmpty) {
+            inviteesField.text = ""
         }
         
         // Ignore user actions since this will a blocking call
@@ -100,7 +107,11 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 let latitude = response?.boundingRegion.center.latitude
                 let longitude = response?.boundingRegion.center.longitude
                 
+                let host = UserDefaults.standard.object(forKey: "email") as! String
+                
                 let parameters = [
+                    "host": host,
+                    "invites": self.inviteesField.text!,
                     "eventType": self.eventMode.titleForSegment(at: self.eventMode.selectedSegmentIndex)!,
                     "eventName": self.eventNameField.text!,
                     "address": self.eventAddressField.text!,
