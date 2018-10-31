@@ -21,6 +21,7 @@ class MapViewController: UIViewController {
     }
     override func viewDidLoad() {
         searchBar.delegate = self
+        mapView.delegate = self
         
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         
@@ -98,22 +99,28 @@ extension MapViewController {
                             if let eventTitle = eventData["eventName"] as? String {
                                 annotation.title = eventTitle
                             }
-                            if let description = eventData["description"] as? String {
-                                annotation.subtitle = description
+                            if let category = eventData["category"] as? String {
+                                annotation.subtitle = eventCategories[Int(category)!]
                             }
-                            if let dateStart = eventData["dateStart"] as? String {
-                                annotation.subtitle = annotation.subtitle! + "\n  Date: " + dateStart
-                            }
-                            if let categoryIndex = eventData["category"] as? String {
-                                let category = eventCategories[Int(categoryIndex)!]
-                                annotation.subtitle = annotation.subtitle! + "\n Category: " + category
-                            }
-                            
+    
                             let theLatitude = Double((eventData["latitude"] as! NSString).floatValue)
                             let theLongitude = Double((eventData["longitude"] as! NSString).floatValue)
                             
                             annotation.coordinate = CLLocationCoordinate2DMake(theLatitude, theLongitude)
-                            self.mapView.addAnnotation(annotation)
+                            
+                            let eventDescription = eventData["description"] as? String
+                            let eventDate = eventData["dateStart"] as? String
+                            let eventLocation = eventData["address"] as? String
+                            
+                            // show artwork on map
+                            let artwork = Artwork(title: annotation.title!,
+                                                  subtitle: annotation.subtitle!,
+                                                  date: eventDate!,
+                                                  text: eventDescription!,
+                                                  location: eventLocation!,
+                                                  coordinate: CLLocationCoordinate2D(latitude: theLatitude, longitude: theLongitude))
+                            
+                            self.mapView.addAnnotation(artwork)
                         }
                     }
                 }
@@ -203,18 +210,27 @@ extension MapViewController: FiltersDelegate {
                 if let eventTitle = theEvent["eventName"] as? String {
                     annotation.title = eventTitle
                 }
-                if let description = theEvent["description"] as? String {
-                    annotation.subtitle = description
+                if let category = theEvent["category"] as? String {
+                    annotation.subtitle = eventCategories[Int(category)!]
                 }
-                if let dateStart = theEvent["dateStart"] as? String {
-                    annotation.subtitle = annotation.subtitle! + "\n Date: " + dateStart
-                }
-                if let categoryIndex = theEvent["category"] as? String {
-                    let category = eventCategories[Int(categoryIndex)!]
-                    annotation.subtitle = annotation.subtitle! + "\n Category: " + category
-                }
+                
+                let eventDescription = theEvent["description"] as? String
+                let eventDate = theEvent["dateStart"] as? String
+                let eventLocation = theEvent["address"] as? String
+                
                 annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
-                self.mapView.addAnnotation(annotation)
+                
+                // show artwork on map
+                let artwork = Artwork(title: annotation.title!,
+                                      subtitle: annotation.subtitle!,
+                                      date: eventDate!,
+                                      text: eventDescription!,
+                                      location: eventLocation!,
+                                      coordinate: annotation.coordinate)
+                
+                self.mapView.addAnnotation(artwork)
+                
+                // self.mapView.addAnnotation(annotation)
             }
         }
     }
@@ -256,5 +272,43 @@ extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()
+    }
+}
+
+extension MapViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard let annotation = annotation as? Artwork else { return nil }
+        let identifier = "marker"
+        var view: MKMarkerAnnotationView
+        
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+            as? MKMarkerAnnotationView {
+            dequeuedView.annotation = annotation
+            view = dequeuedView
+        } else {
+            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.canShowCallout = true
+            view.calloutOffset = CGPoint(x: -5, y: 5)
+            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        }
+        return view
+    }
+    
+
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView,
+                 calloutAccessoryControlTapped control: UIControl) {
+        let annotation = view.annotation as! Artwork
+        
+        if let eventDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(
+            withIdentifier: "eventDetailsViewController") as? EventDetailsViewController {
+            
+            eventDetailsViewController.textTitle = ((annotation.title)!)
+            eventDetailsViewController.textDescription = annotation.text!
+            eventDetailsViewController.textDate = annotation.date!
+            eventDetailsViewController.textCategory = annotation.subtitle!
+            eventDetailsViewController.textLocation = annotation.location!
+            
+            self.present(eventDetailsViewController, animated: true, completion: nil)
+        }
     }
 }
