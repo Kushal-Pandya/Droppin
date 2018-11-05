@@ -65,5 +65,17 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, FUIAuthDe
         print("Successfully logged in to facebook...")
         fetchProfile()
     }
-
+    
+    @IBAction func loginTapped(_ sender: UIButton) {
+        if (login_Email.text!.isEmpty) {
+            let alert = UIAlertController(title: "Error", message: "Email Field Empty.", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        UserDefaults.standard.set(login_Email.text, forKey: "email")
+    }
+    
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+    }
 }
