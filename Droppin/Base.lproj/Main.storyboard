@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lvB-6I-C6M">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lvB-6I-C6M">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUw-wl-KaT">
-                                <rect key="frame" x="40" y="138" width="295" height="40"/>
+                                <rect key="frame" x="40" y="144" width="295" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="HIT-zF-1Fe"/>
                                 </constraints>
@@ -56,15 +56,11 @@
                                 </state>
                                 <connections>
                                     <action selector="loginTapped:" destination="lvB-6I-C6M" eventType="touchUpInside" id="s3h-Ce-nK9"/>
-                                    <segue destination="SUi-bm-mzI" kind="show" id="LI9-41-6ba"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9V9-uW-D2e" customClass="FBSDKLoginButton">
-                                <rect key="frame" x="40" y="203" width="295" height="40"/>
+                                <rect key="frame" x="40" y="209" width="295" height="34"/>
                                 <color key="backgroundColor" red="0.22552680969238281" green="0.34321779012680054" blue="0.58807015419006348" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="MxE-a1-pBL"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="19"/>
                                 <state key="normal" title="Login with facebook">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -85,7 +81,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DROPPIN'" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IVS-h8-na0">
-                                <rect key="frame" x="40" y="62" width="295" height="46"/>
+                                <rect key="frame" x="40" y="68" width="295" height="46"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="35"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -149,6 +145,7 @@
                         <outlet property="fbLoginBtn" destination="9V9-uW-D2e" id="6Ca-Tx-WN0"/>
                         <outlet property="login_Email" destination="jCL-RM-G4K" id="CWQ-mE-wvf"/>
                         <outlet property="login_Password" destination="4cv-eR-wto" id="qJo-dL-Edx"/>
+                        <segue destination="SUi-bm-mzI" kind="presentation" identifier="loginBtn" id="9Qv-4q-P6j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WJC-Nh-jSh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -763,8 +760,9 @@
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardAppearance="alert" returnKeyType="next" enablesReturnKeyAutomatically="YES" textContentType="given-name"/>
                                     </textField>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qri-NK-7DC">
-                                        <rect key="frame" x="60" y="208" width="121" height="29"/>
+                                        <rect key="frame" x="35" y="208" width="170" height="29"/>
                                         <segments>
+                                            <segment title="All"/>
                                             <segment title="Public"/>
                                             <segment title="Private"/>
                                         </segments>
@@ -803,7 +801,7 @@
                                     <constraint firstAttribute="trailing" secondItem="26L-rt-dRc" secondAttribute="trailing" constant="8" id="R29-c5-hSZ"/>
                                     <constraint firstAttribute="bottom" secondItem="IAQ-Dl-i7s" secondAttribute="bottom" constant="20" id="Sag-tK-l6s"/>
                                     <constraint firstItem="qri-NK-7DC" firstAttribute="top" secondItem="Xta-F7-zh2" secondAttribute="bottom" constant="32" id="SpG-Vd-I6q"/>
-                                    <constraint firstItem="qri-NK-7DC" firstAttribute="leading" secondItem="f9B-cI-gZN" secondAttribute="leading" constant="60" id="ULA-rT-NXh"/>
+                                    <constraint firstItem="qri-NK-7DC" firstAttribute="leading" secondItem="f9B-cI-gZN" secondAttribute="leading" constant="35" id="ULA-rT-NXh"/>
                                     <constraint firstAttribute="trailing" secondItem="fxG-sM-XPA" secondAttribute="trailing" constant="20" id="Vf0-gi-8ZA"/>
                                     <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="vJJ-KA-aB1" secondAttribute="trailing" constant="8" id="cdt-eI-qrI"/>
                                     <constraint firstItem="IAQ-Dl-i7s" firstAttribute="leading" relation="lessThanOrEqual" secondItem="f9B-cI-gZN" secondAttribute="leading" constant="8" id="h0z-QB-DnW"/>
@@ -1009,7 +1007,7 @@
         <image name="define_location" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="LI9-41-6ba"/>
+        <segue reference="9Qv-4q-P6j"/>
         <segue reference="Vls-zE-Se3"/>
     </inferredMetricsTieBreakers>
 </document>

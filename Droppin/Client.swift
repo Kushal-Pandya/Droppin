@@ -131,4 +131,9 @@ struct Client {
         getCall(pathExtension) { (results:[Any]) in completion(results)}
     }
     
+    static func getUsers(completion: @escaping ([Any]) -> ()) {
+        let pathExtension = "users.json"
+        getCall(pathExtension) { (results:[Any]) in completion(results)}
+    }
+    
 }

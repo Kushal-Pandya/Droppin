@@ -48,7 +48,8 @@ class FiltersViewController: UIViewController {
             categoryIndex = String(theIndex)
         }
         
-        let data = ["categoryID": categoryIndex, "eventDate": dateTextField.text!, "eventType": mode.titleForSegment(at: mode.selectedSegmentIndex)!]
+        let host = UserDefaults.standard.object(forKey: "email") as! String
+        let data = ["host": host, "categoryID": categoryIndex, "eventDate": dateTextField.text!, "eventType": mode.titleForSegment(at: mode.selectedSegmentIndex)!]
             functions.httpsCallable("searchByFilters").call(data) { (result, error) in
                 if let error = error as NSError? {
                     let alert = UIAlertController(title: "Failure", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)

@@ -8,8 +8,13 @@
 
 import UIKit
 import MapKit
+import Firebase
+import FirebaseFunctions
 
 class MapViewController: UIViewController {
+    
+    var eventList: [Any] = []
+    lazy var functions = Functions.functions()
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var mapView: MKMapView!
@@ -86,54 +91,21 @@ extension MapViewController {
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
         
-        Client.getEvents() { (results:[Any]) in
-            if results[0] as? Int == 200 {
-                
-                if let theResults = results[1] as? [String:Any] {
-                    for (_, value) in theResults{
-                        
-                        let annotation = MKPointAnnotation()
-                        
-                        if let eventData = value as? [String:Any] {
-                            
-                            if let eventTitle = eventData["eventName"] as? String {
-                                annotation.title = eventTitle
-                            }
-                            if let category = eventData["category"] as? String {
-                                annotation.subtitle = eventCategories[Int(category)!]
-                            }
-    
-                            let theLatitude = Double((eventData["latitude"] as! NSString).floatValue)
-                            let theLongitude = Double((eventData["longitude"] as! NSString).floatValue)
-                            
-                            annotation.coordinate = CLLocationCoordinate2DMake(theLatitude, theLongitude)
-                            
-                            let eventDescription = eventData["description"] as? String
-                            let eventDate = eventData["dateStart"] as? String
-                            let eventLocation = eventData["address"] as? String
-                            
-                            // show artwork on map
-                            let artwork = Artwork(title: annotation.title!,
-                                                  subtitle: annotation.subtitle!,
-                                                  date: eventDate!,
-                                                  text: eventDescription!,
-                                                  location: eventLocation!,
-                                                  coordinate: CLLocationCoordinate2D(latitude: theLatitude, longitude: theLongitude))
-                            
-                            self.mapView.addAnnotation(artwork)
-                        }
-                    }
-                }
-                
-            } else {
-                // Alert if failed to obtain events
-                let alert = UIAlertController(title: "Failure", message: "Failed to Obtain Events.", preferredStyle: UIAlertController.Style.alert)
+        let host = UserDefaults.standard.object(forKey: "email") as! String
+        let data = ["host": host]
+        functions.httpsCallable("getEvents").call(data) { (result, error) in
+            if let error = error as NSError? {
+                let alert = UIAlertController(title: "Failure", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
+                return
             }
+            self.eventList = ((result?.data as? [String:Any])?["eventList"] as? [Any])!
+            self.didTapApplyFilters(eventList: self.eventList)
         }
 
         activityIndicator.stopAnimating()
+        
     }
 }
 
@@ -264,7 +236,6 @@ extension MapViewController: CLLocationManagerDelegate {
             // let countryCode = placemark.isoCountryCode ?? ""
             
             let address = "\(streetNumber) \(streetName), \(postalCode), \(city), \(province), \(country)";
-            print(address)
             
             UserDefaults.standard.set(address, forKey: "address")
         }

@@ -31,6 +31,8 @@
 	<string>240835286588135</string>
 	<key>FacebookDisplayName</key>
 	<string>Droppin</string>
+	<key>FirebaseScreenReportingEnabled</key>
+	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
