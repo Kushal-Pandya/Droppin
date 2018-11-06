@@ -18,6 +18,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, FUIAuthDe
     @IBOutlet weak var fbLoginBtn: FBSDKLoginButton!
     
     var userList: [String] = []
+    var passwordList: [String] = []
     
     let loginButton: FBSDKLoginButton = {
         let button = FBSDKLoginButton()
@@ -39,6 +40,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, FUIAuthDe
                         if let userData = value as? [String:Any] {
                             if let email = userData["email"] as? String {
                                 self.userList.append(email)
+                            }
+                            if let password = userData["password"] as? String {
+                                self.passwordList.append(password)
                             }
                         }
                     }
@@ -89,11 +93,11 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, FUIAuthDe
             self.present(alert, animated: true, completion: nil)
             return
         } else{
-            if (self.userList.contains(login_Email.text!)) {
+            if (self.userList.contains(login_Email.text!) && login_Password.text! == passwordList[userList.firstIndex(of: login_Email.text!)!]) {
                 UserDefaults.standard.set(login_Email.text, forKey: "email")
                 DispatchQueue.main.async { self.performSegue(withIdentifier: "loginBtn", sender: self) }
             } else {
-                let alert = UIAlertController(title: "Error", message: "User Not Found.", preferredStyle: UIAlertController.Style.alert)
+                let alert = UIAlertController(title: "Error", message: "Password or Username is Incorrect.", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
                 return
