@@ -106,6 +106,7 @@ exports.searchByPrivate = functions.https.onCall((data) => {
 });
 
 exports.searchByFilters = functions.https.onCall((data) => {
+  var host = data.host;
   var categoryID = data.categoryID;
   var eventDate = data.eventDate;
   var eventType = data.eventType;
@@ -118,6 +119,10 @@ exports.searchByFilters = functions.https.onCall((data) => {
     eventDate = null;
   }
 
+  if(eventType === "All"){
+    eventType = null;
+  }
+
   var db = admin.database();
   var ref = db.ref("events");
   
@@ -126,11 +131,23 @@ exports.searchByFilters = functions.https.onCall((data) => {
   var i = 0;
   var category = "";
   var status = "";
+  var creator = "";
+  var invites = "";
+  var userInvite = "";
 
   ref.orderByChild("dateStart").startAt(eventDate).endAt(eventDate+"\uf8ff").on("child_added", function(snapshot){
     category = snapshot.val().category;
     status = snapshot.val().eventType;
-    if((category === categoryID || categoryID === null) && (status === eventType)) {
+    creator = snapshot.val().host;
+    invites = snapshot.val().invites.split(",");
+
+    function findUser(invite){
+        return invite === host;
+    }
+
+    userInvite = invites.find(findUser);
+
+    if((category === categoryID || categoryID === null) && (status === eventType || eventType === null) && (creator === host || userInvite === host)) {
       obj = {
         "category": snapshot.val().category,
         "address": snapshot.val().address,
@@ -138,6 +155,56 @@ exports.searchByFilters = functions.https.onCall((data) => {
         "eventName": snapshot.val().eventName,
         "eventType": snapshot.val().eventType,
         "description": snapshot.val().description,
+        "host": snapshot.val().host,
+        "invites": snapshot.val().invites,
+        "latitude": snapshot.val().latitude,
+        "longitude": snapshot.val().longitude,
+      };
+      eventList[i] = obj;
+      i = i + 1;
+    }
+  });
+
+  return {
+    eventList,
+  };
+});
+
+exports.getEvents = functions.https.onCall((data) => {
+  var host = data.host;
+
+  var db = admin.database();
+  var ref = db.ref("events");
+  
+  var obj = {};
+  var eventList = [];
+  var i = 0;
+  var creator = "";
+  var status = "";
+  var invites = "";
+  var userInvite = "";
+
+  ref.orderByChild("dateStart").startAt(null).endAt(null+"\uf8ff").on("child_added", function(snapshot){
+    creator = snapshot.val().host;
+    invites = snapshot.val().invites.split(",");
+    status = snapshot.val().eventType;
+
+    function findUser(invite){
+        return invite === host;
+    }
+
+    userInvite = invites.find(findUser);
+
+    if(creator === host || userInvite === host || status === "Public") {
+      obj = {
+        "category": snapshot.val().category,
+        "address": snapshot.val().address,
+        "dateStart": snapshot.val().dateStart,
+        "eventName": snapshot.val().eventName,
+        "eventType": snapshot.val().eventType,
+        "description": snapshot.val().description,
+        "host": snapshot.val().host,
+        "invites": snapshot.val().invites,
         "latitude": snapshot.val().latitude,
         "longitude": snapshot.val().longitude,
       };
