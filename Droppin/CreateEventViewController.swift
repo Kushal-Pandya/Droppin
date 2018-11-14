@@ -26,6 +26,7 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        eventStartTime.minimumDate = Date()
         self.eventCategoryPicker.delegate = self
         self.eventCategoryPicker.dataSource = self
     }
