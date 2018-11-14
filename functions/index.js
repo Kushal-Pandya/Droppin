@@ -218,6 +218,98 @@ exports.getEvents = functions.https.onCall((data) => {
   };
 });
 
+exports.getHostedEvents = functions.https.onCall((data) => {
+  var host = data.host;
+
+  var db = admin.database();
+  var ref = db.ref("events");
+  
+  var obj = {};
+  var eventList = [];
+  var i = 0;
+  var creator = "";
+
+  ref.orderByChild("dateStart").startAt(null).endAt(null+"\uf8ff").on("child_added", function(snapshot){
+    creator = snapshot.val().host;
+
+    if(creator === host) {
+      obj = {
+        "category": snapshot.val().category,
+        "address": snapshot.val().address,
+        "dateStart": snapshot.val().dateStart,
+        "eventName": snapshot.val().eventName,
+        "eventType": snapshot.val().eventType,
+        "description": snapshot.val().description,
+        "host": snapshot.val().host,
+        "invites": snapshot.val().invites,
+        "latitude": snapshot.val().latitude,
+        "longitude": snapshot.val().longitude,
+      };
+      eventList[i] = obj;
+      i = i + 1;
+    }
+  });
+
+  return {
+    eventList,
+  };
+});
+
+exports.getInvitedEvents = functions.https.onCall((data) => {
+  var host = data.host;
+
+  var db = admin.database();
+  var ref = db.ref("events");
+  
+  var obj = {};
+  var eventList = [];
+  var i = 0;
+  var creator = "";
+  var status = "";
+  var eventDate = "";
+  var invites = "";
+  var userInvite = "";
+  var year = new Date().getFullYear();
+  var month = new Date().getMonth();
+  var day = new Date().getDate();
+  var newDate = "";
+
+  ref.orderByChild("dateStart").startAt(null).endAt(null+"\uf8ff").on("child_added", function(snapshot){
+    creator = snapshot.val().host;
+    invites = snapshot.val().invites.split(",");
+    status = snapshot.val().eventType;
+    eventDate = snapshot.val().dateStart.split(" ")[0];
+    newEvent = eventDate.split("-");
+
+    function findUser(invite){
+        return invite === host;
+    }
+
+    userInvite = invites.find(findUser);
+
+    if(userInvite === host && (newEvent[0]>=year && newEvent[1]>=month && newEvent[2]>=day)) {
+      obj = {
+        "category": snapshot.val().category,
+        "address": snapshot.val().address,
+        "dateStart": snapshot.val().dateStart,
+        "eventName": snapshot.val().eventName,
+        "eventType": snapshot.val().eventType,
+        "description": snapshot.val().description,
+        "host": snapshot.val().host,
+        "invites": snapshot.val().invites,
+        "latitude": snapshot.val().latitude,
+        "longitude": snapshot.val().longitude,
+      };
+      eventList[i] = obj;
+      i = i + 1;
+    }
+  });
+
+  return {
+    eventList,
+  };
+});
+
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
