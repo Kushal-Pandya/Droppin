@@ -120,14 +120,10 @@ class EventDetailsViewController: UIViewController {
     @IBOutlet weak var eventCategory: UILabel!
     @IBOutlet weak var eventDate: UILabel!
     
-    
-    
-    @IBAction func cancelButton(_ sender: Any) {
+    @IBAction func closeButtonTapped(_ sender: UIButton) {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
-    @IBAction func goButton(_ sender: Any) {
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
-    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
