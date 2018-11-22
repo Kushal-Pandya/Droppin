@@ -28,6 +28,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, FUIAuthDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UserDefaults.standard.set(false, forKey: "logoutSet")
         
         loginButton.delegate = self
         fbLoginBtn = loginButton
@@ -52,13 +53,31 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, FUIAuthDe
         
         if let token = FBSDKAccessToken.current() {
             fetchProfile()
+            DispatchQueue.main.async { self.performSegue(withIdentifier: "loginBtn", sender: self) }
         }
-        
+    }
+
+    @IBAction func loginPressed(_ sender: UIButton) {
+        UserDefaults.standard.set(true, forKey: "loginSet")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if let logoutReturn = UserDefaults.standard.object(forKey: "logoutSet") as? Bool {
+            if (logoutReturn == true) {
+                FBSDKLoginManager().logOut()
+                UserDefaults.standard.set(false, forKey: "logoutSet")
+            }
+        }
+        if let loginReturn = UserDefaults.standard.object(forKey: "loginSet") as? Bool {
+            if (loginReturn == true) {
+                DispatchQueue.main.async { self.performSegue(withIdentifier: "loginBtn", sender: self) }
+            }
+        }
     }
     
     func fetchProfile() {
         print("fetch profile")
-        let parameters = ["fields": "email, first_name, last_name"]
+        let parameters = ["fields": "email, first_name, last_name, picture.type(large)"]
         FBSDKGraphRequest(graphPath: "me", parameters: parameters).start(completionHandler: { (connection, result, error) -> Void in
             
             if error != nil {
@@ -68,6 +87,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, FUIAuthDe
             
             if let email = result as? [String:Any] {
                 print(email["email"]!)
+                DispatchQueue.main.async { UserDefaults.standard.set(email["email"]!, forKey: "email") }
             }
         })
     }
@@ -105,6 +125,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate, FUIAuthDe
         }
     }
     
+    // DON'T DELETE, NEEDED FOR SIGNOUT
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
     }
 }

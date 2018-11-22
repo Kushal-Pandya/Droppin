@@ -58,10 +58,10 @@ class FiltersViewController: UIViewController {
                     return
                 }
                 self.eventList = ((result?.data as? [String:Any])?["eventList"] as? [Any])!
+                self.filtersDelegate.didTapApplyFilters(eventList: self.eventList)
             }
 
         dismiss(animated: true) {
-            self.filtersDelegate.didTapApplyFilters(eventList: self.eventList)
         }
     }
 }
@@ -107,7 +107,7 @@ extension FiltersViewController {
     @objc func dateChanged(datePicker: UIDatePicker) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        
+
         dateTextField.text = dateFormatter.string(from: datePicker.date)
     }
 }

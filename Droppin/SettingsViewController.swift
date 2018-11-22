@@ -26,6 +26,8 @@ class SettingsViewController: UIViewController {
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: {(alert: UIAlertAction!) in
+            UserDefaults.standard.set(true, forKey: "logoutSet")
+            UserDefaults.standard.set(false, forKey: "loginSet")
             self.performSegue(withIdentifier: "unwindToLoginViewController", sender: self)
         }))
         self.present(alert, animated: true, completion: nil)
