@@ -62,8 +62,6 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
                 self.present(alert, animated: true, completion: nil)
                 return
             }
-            print("-----hosted-----")
-            print(result?.data)
             let hostedEvents = ((result?.data as? [String:Any])?["eventList"] as? [Any])!
             self.getList(eventList: hostedEvents, listType: "hosted")
             self.tableView.reloadData()
@@ -76,8 +74,6 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
                 self.present(alert, animated: true, completion: nil)
                 return
             }
-            print("-----invited-----")
-            print(result?.data)
             let invitedEvents = ((result?.data as? [String:Any])?["eventList"] as? [Any])!
             self.getList(eventList: invitedEvents, listType: "invited")
             self.tableView.reloadData()
