@@ -7,20 +7,23 @@
 //
 
 import UIKit
+import FirebaseFunctions
 
 class EventViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    let cars = ["BMW", "Mercedes", "Honda", "Toyota", "Ferrari"]
-    let fruits = ["Mango", "Banana", "Apples", "Oranges", "Blueberries"]
+    var hostedList = [String]()
+    var invitedList = [String]()
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var createEventButton: UIButton!
     
+    lazy var functions = Functions.functions()
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            return cars.count
+            return hostedList.count
         case 1:
-            return fruits.count
+            return invitedList.count
         default:
             break
         }
@@ -31,9 +34,9 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            cell.textLabel?.text = cars[indexPath.row]
+            cell.textLabel?.text = hostedList[indexPath.row]
         case 1:
-            cell.textLabel?.text = fruits[indexPath.row]
+            cell.textLabel?.text = invitedList[indexPath.row]
         default:
             break
         }
@@ -43,22 +46,59 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        hostedList.removeAll()
+        invitedList.removeAll()
+        
+        let host = UserDefaults.standard.object(forKey: "email") as! String
+        let data = ["host": host]
+        functions.httpsCallable("getHostedEvents").call(data) { (result, error) in
+            if let error = error as NSError? {
+                let alert = UIAlertController(title: "Failure", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            let hostedEvents = ((result?.data as? [String:Any])?["eventList"] as? [Any])!
+            self.getList(eventList: hostedEvents, listType: "hosted")
+            self.tableView.reloadData()
+        }
+        
+        functions.httpsCallable("getInvitedEvents").call(data) { (result, error) in
+            if let error = error as NSError? {
+                let alert = UIAlertController(title: "Failure", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            let invitedEvents = ((result?.data as? [String:Any])?["eventList"] as? [Any])!
+            self.getList(eventList: invitedEvents, listType: "invited")
+            self.tableView.reloadData()
+        }
+    }
+    
+    func getList(eventList: [Any], listType: String) {
+        for event in eventList {
+            if let theEvent = event as? [String:Any] {
+                if let eventTitle = theEvent["eventName"] as? String {
+                    switch listType {
+                    case "hosted":
+                        hostedList.append(eventTitle)
+                    case "invited":
+                        invitedList.append(eventTitle)
+                    default:
+                        break
+                    }
+                }
+            }
+        }
     }
     
     @IBAction func SwitchSegmentedControl(_ sender: UISegmentedControl) {
         tableView.reloadData()
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

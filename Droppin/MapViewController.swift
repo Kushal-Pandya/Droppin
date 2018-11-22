@@ -170,7 +170,7 @@ extension MapViewController: UISearchBarDelegate {
 extension MapViewController: FiltersDelegate {
     func didTapApplyFilters(eventList: [Any]) {
         self.mapView.removeAnnotations(self.mapView.annotations)
-
+        
         for event in eventList {
             let annotation = MKPointAnnotation()
             annotation.subtitle = ""
