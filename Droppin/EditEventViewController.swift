@@ -43,8 +43,6 @@ class EditEventViewController: UIViewController {
         activityIndicator.startAnimating()
         self.view.addSubview(activityIndicator)
         
-        print(data)
-        
         functions.httpsCallable("editEvent").call(data) { (result, error) in
             if let error = error as NSError? {
                 let alert = UIAlertController(title: "Failure", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
