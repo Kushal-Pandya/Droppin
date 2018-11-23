@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/kushalpandya/Documents/CIS4250/Velocity/Droppin/EditEventViewController.swift">
+   </FileRef>
+   <FileRef
       location = "group:Droppin.xcodeproj">
    </FileRef>
    <FileRef

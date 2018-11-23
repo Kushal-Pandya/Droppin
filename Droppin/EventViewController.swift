@@ -52,7 +52,15 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             let edit = UITableViewRowAction(style: .normal, title: "Edit") { action, index in
+                let cell = tableView.cellForRow(at: index)
+                let cellTitle = cell?.textLabel?.text
                 
+                if let editEventViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(
+                    withIdentifier: "editEventViewController") as? EditEventViewController {
+                    
+                    editEventViewController.eventName = cellTitle!
+                    self.present(editEventViewController, animated: true, completion: nil)
+                }
             }
             
             let delete = UITableViewRowAction(style: .destructive, title: "Delete") { action, index in
@@ -75,6 +83,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
             }
             
             return [delete, edit]
+                
         case 1:
             let accept = UITableViewRowAction(style: .normal, title: "Accept") { action, index in
                 let cell = tableView.cellForRow(at: index)
