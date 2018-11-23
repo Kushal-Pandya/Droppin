@@ -310,6 +310,68 @@ exports.getInvitedEvents = functions.https.onCall((data) => {
   };
 });
 
+exports.removeEvent = functions.https.onCall((data) => {
+  var eventName = data.eventName;
+
+  var db = admin.database();
+  var ref = db.ref("events");
+
+  ref.orderByChild("eventName").equalTo(eventName).on("child_added", function(snapshot){
+    ref.child(snapshot.key).remove();
+  });
+});
+
+exports.getEventDetails = functions.https.onCall((data) => {
+  var eventName = data.eventName;
+
+  var db = admin.database();
+  var ref = db.ref("events");
+
+  var obj = {};
+  var eventList = [];
+  var i = 0;
+
+  ref.orderByChild("eventName").equalTo(eventName).on("child_added", function(snapshot){
+    obj = {
+      "category": snapshot.val().category,
+      "address": snapshot.val().address,
+      "dateStart": snapshot.val().dateStart,
+      "eventName": snapshot.val().eventName,
+      "eventType": snapshot.val().eventType,
+      "description": snapshot.val().description,
+      "host": snapshot.val().host,
+      "invites": snapshot.val().invites,
+      "latitude": snapshot.val().latitude,
+      "longitude": snapshot.val().longitude,
+    };
+    eventList[i] = obj;
+    i = i + 1;
+  });
+
+  return {
+    eventList,
+  };
+});
+
+exports.editEvent = functions.https.onCall((data) => {
+  var eventName = data.eventName;
+
+  var description = data.description;
+  var dateStart = data.dateStart;
+  var eventType = data.eventType;
+
+  var db = admin.database();
+  var ref = db.ref("events");
+
+  ref.orderByChild("eventName").equalTo(eventName).on("child_added", function(snapshot){
+    var updates = {};
+    updates['/'+snapshot.key+'/description'] = description;
+    updates['/'+snapshot.key+'/dateStart'] = dateStart;
+    updates['/'+snapshot.key+'/eventType'] = eventType;
+    ref.update(updates);
+  });
+});
+
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
