@@ -372,6 +372,152 @@ exports.editEvent = functions.https.onCall((data) => {
   });
 });
 
+exports.acceptInvite = functions.https.onCall((data) => {
+  var eventName = data.eventName;
+  var email = data.user;
+
+  var db = admin.database();
+  var ref = db.ref("events");
+
+  ref.orderByChild("eventName").equalTo(eventName).on("child_added", function(snapshot){
+    var aData = [];
+    if(snapshot.val().accepted.length !== 0){
+        aData = snapshot.val().accepted;
+    }
+    var tData = snapshot.val().tentative;
+    var dData = snapshot.val().declined;
+    var updates = {};
+    var aIndex = aData.indexOf(email);
+    var dIndex = dData.indexOf(email);
+    var tIndex = tData.indexOf(email);
+    if (tIndex > -1){
+        tData.splice(tIndex,1);
+        if(tData.length === 0){
+            updates['/'+snapshot.key+'/tentative'] = "";
+        }
+        else{
+            updates['/'+snapshot.key+'/tentative'] = tData;
+        }
+    }
+    else if (dIndex > -1){
+        dData.splice(dIndex,1);
+        if(dData.length === 0){
+            updates['/'+snapshot.key+'/declined'] = "";
+        }
+        else{
+            updates['/'+snapshot.key+'/declined'] = dData;
+        }
+    }
+
+    aData.push(email);
+    if(aIndex < 0){
+        updates['/'+snapshot.key+'/accepted'] = aData;
+        ref.update(updates);
+    }
+    else{
+        console.log("User already made this choice");
+    }
+  });
+});
+
+exports.declineInvite = functions.https.onCall((data) => {
+  var eventName = data.eventName;
+  var email = data.user;
+
+  var db = admin.database();
+  var ref = db.ref("events");
+
+  ref.orderByChild("eventName").equalTo(eventName).on("child_added", function(snapshot){
+    var dData = [];
+    if(snapshot.val().declined.length !== 0){
+        dData = snapshot.val().dData;
+    }
+    var aData = snapshot.val().accepted;
+    var tData = snapshot.val().tentative;
+    var updates = {};
+    var i;
+    var aIndex = aData.indexOf(email);
+    var dIndex = dData.indexOf(email);
+    var tIndex = tData.indexOf(email);
+    if (aIndex > -1){
+        aData.splice(aIndex,1);
+        if(aData.length === 0){
+            updates['/'+snapshot.key+'/accepted'] = "";
+        }
+        else{
+            updates['/'+snapshot.key+'/accepted'] = aData;
+        }
+    }
+    else if (tIndex > -1){
+        tData.splice(tIndex,1);
+        if(tData.length === 0){
+            updates['/'+snapshot.key+'/tentative'] = "";
+        }
+        else{
+            updates['/'+snapshot.key+'/tentative'] = tData;
+        }
+    }
+
+    if(dIndex < 0){
+        dData.push(email);
+        updates['/'+snapshot.key+'/declined'] = dData;
+        ref.update(updates);
+    }
+    else{
+        console.log("User already made this choice");
+    }
+  });
+});
+
+exports.tentativeInvite = functions.https.onCall((data) => {
+  var eventName = data.eventName;
+  var email = data.user;
+
+  var db = admin.database();
+  var ref = db.ref("events");
+
+  ref.orderByChild("eventName").equalTo(eventName).on("child_added", function(snapshot){
+    var tData = [];
+    if(snapshot.val().tentative.length !== 0){
+        tData = snapshot.val().tentative;
+    }
+    var aData = snapshot.val().accepted;
+    var dData = snapshot.val().declined;
+    var updates = {};
+    var i;
+    var aIndex = aData.indexOf(email);
+    var dIndex = dData.indexOf(email);
+    var tIndex = tData.indexOf(email);
+    if (aIndex > -1){
+        aData.splice(aIndex,1);
+        if(aData.length === 0){
+            updates['/'+snapshot.key+'/accepted'] = "";
+        }
+        else{
+            updates['/'+snapshot.key+'/accepted'] = aData;
+        }
+    }
+    else if (dIndex > -1){
+        dData.splice(dIndex,1);
+        if(dData.length === 0){
+            updates['/'+snapshot.key+'/declined'] = "";
+        }
+        else{
+            updates['/'+snapshot.key+'/declined'] = dData;
+        }
+    }
+
+    if(tIndex < 0){
+        tData.push(email);
+        updates['/'+snapshot.key+'/tentative'] = tData;
+        ref.update(updates);
+    }
+    else{
+        console.log("User already made this choice");
+    }
+  });
+});
+
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
