@@ -111,6 +111,9 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
                 let host = UserDefaults.standard.object(forKey: "email") as! String
                 
                 let parameters = [
+                    "accepted": "",
+                    "tentative": "",
+                    "declined": "",
                     "host": host,
                     "invites": self.inviteesField.text!,
                     "eventType": self.eventMode.titleForSegment(at: self.eventMode.selectedSegmentIndex)!,
