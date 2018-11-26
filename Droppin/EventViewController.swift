@@ -45,7 +45,55 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Add event details page here, will need to make API call
+        let cell = tableView.cellForRow(at: indexPath)
+        let eventTitle = cell?.textLabel?.text!
+        let data = ["eventName": eventTitle]
+        
+        var eventDescription: String = ""
+        var eventDate: String = ""
+        var eventCategory: String = ""
+        var eventLocation: String = ""
+        
+        functions.httpsCallable("getEventDetails").call(data) { (result, error) in
+            if let error = error as NSError? {
+                let alert = UIAlertController(title: "Failure", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            
+            let theEventDetails = ((result?.data as? [String:Any])?["eventList"] as? [Any])!
+            
+            for event in theEventDetails {
+                if let theEvent = event as? [String:Any] {
+                    if let description = theEvent["description"] as? String {
+                        eventDescription = description
+                    }
+                    if let date = theEvent["dateStart"] as? String {
+                        eventDate = date
+                    }
+                    if let category = theEvent["category"] as? String {
+                        eventCategory = category
+                    }
+                    if let location = theEvent["address"] as? String {
+                        eventLocation = location
+                    }
+                    
+                }
+            }
+            
+            if let eventDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(
+                withIdentifier: "eventDetailsViewController") as? EventDetailsViewController {
+                
+                eventDetailsViewController.textTitle = eventTitle!
+                eventDetailsViewController.textDescription = eventDescription
+                eventDetailsViewController.textDate = eventDate
+                eventDetailsViewController.textCategory = eventCategory
+                eventDetailsViewController.textLocation = eventLocation
+                
+                self.present(eventDetailsViewController, animated: true, completion: nil)
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -57,7 +105,14 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
             
             let delete = UITableViewRowAction(style: .destructive, title: "Delete") { action, index in
                 let cell = tableView.cellForRow(at: index)
-                let cellTitle = cell?.textLabel?.text
+                let cellTitle = cell?.textLabel?.text!
+                let data = ["eventName": cellTitle]
+                
+                // Activity Indicator
+                let activityIndicator = UIActivityIndicatorView(style: .gray)
+                activityIndicator.center = self.view.center
+                activityIndicator.hidesWhenStopped = true
+                activityIndicator.startAnimating()
                 
                 let alert = UIAlertController(
                     title: "Are you sure you want to delete " + cellTitle! + " ?",
@@ -68,7 +123,19 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
                     title: "Delete",
                     style: .destructive,
                     handler: { action in
-                        // Delete API call here
+                        
+                        self.view.addSubview(activityIndicator)
+                        self.functions.httpsCallable("removeEvent").call(data) { (result, error) in
+                            if let error = error as NSError? {
+                                let alert = UIAlertController(title: "Failure", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                self.present(alert, animated: true, completion: nil)
+                                return
+                            }
+                        }
+                        self.hostedList.remove(at: index.row)
+                        self.tableView.reloadData()
+                        activityIndicator.stopAnimating()
                 }))
                 
                 self.present(alert, animated: true, completion: nil)

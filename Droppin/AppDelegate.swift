@@ -11,6 +11,7 @@ import Firebase
 import IQKeyboardManagerSwift
 import FirebaseUI
 import FBSDKCoreKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
