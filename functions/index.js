@@ -518,6 +518,38 @@ exports.tentativeInvite = functions.https.onCall((data) => {
   });
 });
 
+exports.getResponse = functions.https.onCall((data) => {
+  var eventName = data.eventName;
+  var email = data.user;
+
+  var db = admin.database();
+  var ref = db.ref("events");
+  var action = "";
+
+  ref.orderByChild("eventName").equalTo(eventName).on("child_added", function(snapshot){
+    var aData = snapshot.val().accepted;
+    var tData = snapshot.val().tentative;
+    var dData = snapshot.val().declined;
+    var aIndex = aData.indexOf(email);
+    var dIndex = dData.indexOf(email);
+    var tIndex = tData.indexOf(email);
+    if(aIndex > -1){
+        action = "accepted";
+    }
+    else if (dIndex > -1){
+        action = "declined";
+    }
+    else if (tIndex > -1){
+        action = "tentative";
+    }
+    else{
+        action = "";
+    }
+  });
+
+  return {response: action};
+});
+
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
