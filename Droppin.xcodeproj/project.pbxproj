@@ -12,6 +12,7 @@
 		9BA0B3BB217796C4005431A9 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA0B3BA217796C4005431A9 /* CreateEventViewController.swift */; };
 		9BC7E31721829E93004563E3 /* EventCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7E31621829E93004563E3 /* EventCategories.swift */; };
 		9BC7E31921836CC7004563E3 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7E31821836CC7004563E3 /* FiltersViewController.swift */; };
+		9BF7A04921A77931008BA252 /* EditEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF7A04821A77931008BA252 /* EditEventViewController.swift */; };
 		A3B24435F08B5CBEA0606DC5 /* Pods_DroppinUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98CEE1F312BC374677B8D9A8 /* Pods_DroppinUITests.framework */; };
 		AE19E206215EF9E100EF6CD2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE19E205215EF9E100EF6CD2 /* GoogleService-Info.plist */; };
 		AE1EB9B5215C0F3300EC77A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1EB9B4215C0F3300EC77A1 /* AppDelegate.swift */; };
@@ -57,6 +58,7 @@
 		9BA0B3BA217796C4005431A9 /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 		9BC7E31621829E93004563E3 /* EventCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCategories.swift; sourceTree = "<group>"; };
 		9BC7E31821836CC7004563E3 /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
+		9BF7A04821A77931008BA252 /* EditEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditEventViewController.swift; path = /Users/kushalpandya/Documents/CIS4250/Velocity/Droppin/EditEventViewController.swift; sourceTree = "<absolute>"; };
 		A501EAC882453C5886418F5B /* Pods_DroppinTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DroppinTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8D703179BD090A2CE5A1207 /* Pods-DroppinUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DroppinUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DroppinUITests/Pods-DroppinUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AB207ADBB107870145AFDBEE /* Pods-DroppinUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DroppinUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DroppinUITests/Pods-DroppinUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				AE5E79CD2188E23C00C20846 /* Artwork.swift */,
 				9BC7E31821836CC7004563E3 /* FiltersViewController.swift */,
 				AE7B229D215F156600A2899F /* EventViewController.swift */,
+				9BF7A04821A77931008BA252 /* EditEventViewController.swift */,
 				9BA0B3BA217796C4005431A9 /* CreateEventViewController.swift */,
 				9BC7E31621829E93004563E3 /* EventCategories.swift */,
 				AE7B229F215F15AD00A2899F /* SettingsViewController.swift */,
@@ -481,6 +484,7 @@
 				AE1EB9B5215C0F3300EC77A1 /* AppDelegate.swift in Sources */,
 				AE7B229C215F155200A2899F /* MapViewController.swift in Sources */,
 				412C7F8A2178F4D400C8A1CC /* Client.swift in Sources */,
+				9BF7A04921A77931008BA252 /* EditEventViewController.swift in Sources */,
 				AE7B22A0215F15AD00A2899F /* SettingsViewController.swift in Sources */,
 				9BC7E31921836CC7004563E3 /* FiltersViewController.swift in Sources */,
 				AE5E79CE2188E23C00C20846 /* Artwork.swift in Sources */,

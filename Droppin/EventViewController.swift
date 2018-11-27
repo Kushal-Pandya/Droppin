@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import Foundation
 import FirebaseFunctions
 
 class EventViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
     var hostedList = [String]()
     var invitedList = [String]()
+    var responseList = [String]()
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var createEventButton: UIButton!
@@ -32,11 +36,15 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             cell.textLabel?.text = hostedList[indexPath.row]
+            cell.detailTextLabel?.text = ""
         case 1:
             cell.textLabel?.text = invitedList[indexPath.row]
+            cell.detailTextLabel?.text = responseList[indexPath.row]
+
         default:
             break
         }
@@ -52,7 +60,15 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             let edit = UITableViewRowAction(style: .normal, title: "Edit") { action, index in
+                let cell = tableView.cellForRow(at: index)
+                let cellTitle = cell?.textLabel?.text
                 
+                if let editEventViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(
+                    withIdentifier: "editEventViewController") as? EditEventViewController {
+                    
+                    editEventViewController.eventName = cellTitle!
+                    self.present(editEventViewController, animated: true, completion: nil)
+                }
             }
             
             let delete = UITableViewRowAction(style: .destructive, title: "Delete") { action, index in
@@ -75,42 +91,109 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
             }
             
             return [delete, edit]
+                
         case 1:
             let accept = UITableViewRowAction(style: .normal, title: "Accept") { action, index in
+                
+                // Activity Indicator
+                let activityIndicator = UIActivityIndicatorView(style: .gray)
+                activityIndicator.center = self.view.center
+                activityIndicator.hidesWhenStopped = true
+                activityIndicator.startAnimating()
+                self.view.addSubview(activityIndicator)
+                
                 let cell = tableView.cellForRow(at: index)
                 let cellTitle = cell?.textLabel?.text
+                
+                let host = UserDefaults.standard.object(forKey: "email") as! String
+                let data = ["user": host, "eventName": cellTitle!]
+                self.functions.httpsCallable("acceptInvite").call(data) { (result, error) in
+                    if let error = error as NSError? {
+                        let alert = UIAlertController(title: "Failure", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                        return
+                    }
+                }
                 
                 let alert = UIAlertController(
                     title: "Accepted Event!",
                     message: "Congrats you are going to " + cellTitle!,
                     preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                
+                activityIndicator.stopAnimating()
                 self.present(alert, animated: true, completion: nil)
+                cell?.detailTextLabel?.text = "accepted"
             }
             accept.backgroundColor = .blue
             
             let tentative = UITableViewRowAction(style: .normal, title: "Tentative") { action, index in
+                
+                // Activity Indicator
+                let activityIndicator = UIActivityIndicatorView(style: .gray)
+                activityIndicator.center = self.view.center
+                activityIndicator.hidesWhenStopped = true
+                activityIndicator.startAnimating()
+                self.view.addSubview(activityIndicator)
+                
                 let cell = tableView.cellForRow(at: index)
                 let cellTitle = cell?.textLabel?.text
+                
+                let host = UserDefaults.standard.object(forKey: "email") as! String
+                let data = ["user": host, "eventName": cellTitle!]
+                self.functions.httpsCallable("tentativeInvite").call(data) { (result, error) in
+                    if let error = error as NSError? {
+                        let alert = UIAlertController(title: "Failure", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                        return
+                    }
+                }
                 
                 let alert = UIAlertController(
                     title: "Tentative Event",
                     message: "You might be going to " + cellTitle!,
                     preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                
+                activityIndicator.stopAnimating()
                 self.present(alert, animated: true, completion: nil)
+                cell?.detailTextLabel?.text = "tentative"
             }
             
             let decline = UITableViewRowAction(style: .destructive, title: "Decline") { action, index in
+        
+                // Activity Indicator
+                let activityIndicator = UIActivityIndicatorView(style: .gray)
+                activityIndicator.center = self.view.center
+                activityIndicator.hidesWhenStopped = true
+                activityIndicator.startAnimating()
+                self.view.addSubview(activityIndicator)
+                
                 let cell = tableView.cellForRow(at: index)
                 let cellTitle = cell?.textLabel?.text
+                
+                let host = UserDefaults.standard.object(forKey: "email") as! String
+                let data = ["user": host, "eventName": cellTitle!]
+                self.functions.httpsCallable("declineInvite").call(data) { (result, error) in
+                    if let error = error as NSError? {
+                        let alert = UIAlertController(title: "Failure", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                        return
+                    }
+                }
                 
                 let alert = UIAlertController(
                     title: "Declined Event",
                     message: "You have declined your invitation to " + cellTitle!,
                     preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                
+                activityIndicator.stopAnimating()
                 self.present(alert, animated: true, completion: nil)
+                cell?.detailTextLabel?.text = "declined"
             }
             
             return [decline, tentative, accept]
@@ -125,9 +208,21 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        segmentedControl.selectedSegmentIndex = 0
+        refreshData()
+    }
+    
+    func refreshData() {
+        // Activity Indicator
+        let activityIndicator = UIActivityIndicatorView(style: .gray)
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
+        self.view.addSubview(activityIndicator)
         
         hostedList.removeAll()
         invitedList.removeAll()
+        responseList.removeAll()
         
         let host = UserDefaults.standard.object(forKey: "email") as! String
         let data = ["host": host]
@@ -152,8 +247,9 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
             }
             let invitedEvents = ((result?.data as? [String:Any])?["eventList"] as? [Any])!
             self.getList(eventList: invitedEvents, listType: "invited")
-            self.tableView.reloadData()
         }
+        
+        activityIndicator.stopAnimating()
     }
     
     func getList(eventList: [Any], listType: String) {
@@ -165,6 +261,21 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
                         hostedList.append(eventTitle)
                     case "invited":
                         invitedList.append(eventTitle)
+                        
+                        let host = UserDefaults.standard.object(forKey: "email") as! String
+                        let data = ["user": host, "eventName": eventTitle]
+                        functions.httpsCallable("getResponse").call(data) { (result, error) in
+                            if let error = error as NSError? {
+                                let alert = UIAlertController(title: "Failure", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                self.present(alert, animated: true, completion: nil)
+                                return
+                            }
+                            
+                            let response = ((result?.data as? [String:String])?["response"])!
+                            self.responseList.append(response)
+                        }
+                        
                     default:
                         break
                     }
