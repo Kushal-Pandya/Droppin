@@ -943,13 +943,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEN-3C-Cbr">
-                                                <rect key="frame" x="20" y="407" width="339" height="21"/>
+                                                <rect key="frame" x="20" y="529" width="339" height="21"/>
                                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ee-KT-6bE">
-                                                <rect key="frame" x="20" y="375" width="92" height="22"/>
+                                                <rect key="frame" x="20" y="497" width="92" height="22"/>
                                                 <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -985,7 +985,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" tag="1005" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Y4-xA-IPR">
-                                                <rect key="frame" x="40" y="543" width="295" height="31"/>
+                                                <rect key="frame" x="40" y="582" width="295" height="31"/>
                                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="16"/>
                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -994,31 +994,63 @@
                                                     <action selector="closeButtonTapped:" destination="3xh-rE-KVn" eventType="touchUpInside" id="WZm-eM-N05"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v19-ya-1UH">
+                                                <rect key="frame" x="20" y="394" width="339" height="21"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invitees" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iID-7F-VyR">
+                                                <rect key="frame" x="20" y="362" width="61" height="22"/>
+                                                <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YmY-55-8rM">
+                                                <rect key="frame" x="20" y="460" width="339" height="21"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attendees" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="raL-eu-ISn">
+                                                <rect key="frame" x="20" y="428" width="82" height="22"/>
+                                                <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="v19-ya-1UH" firstAttribute="top" secondItem="iID-7F-VyR" secondAttribute="bottom" constant="10" id="1hu-48-w8q"/>
                                             <constraint firstItem="zEN-3C-Cbr" firstAttribute="top" secondItem="0ee-KT-6bE" secondAttribute="bottom" constant="10" id="5kq-ce-eBG"/>
+                                            <constraint firstItem="v19-ya-1UH" firstAttribute="trailing" secondItem="YmY-55-8rM" secondAttribute="trailing" id="6GO-7T-8Nh"/>
                                             <constraint firstItem="3fS-aw-iwu" firstAttribute="leading" secondItem="2I7-fa-54j" secondAttribute="trailing" constant="54" id="6IE-xE-4cU"/>
                                             <constraint firstItem="nbR-hi-9qt" firstAttribute="top" secondItem="zSm-gh-MgW" secondAttribute="bottom" constant="29" id="6g5-by-YLu"/>
-                                            <constraint firstAttribute="bottom" secondItem="6Y4-xA-IPR" secondAttribute="bottom" constant="93" id="7hS-tZ-5Z8"/>
+                                            <constraint firstAttribute="bottom" secondItem="6Y4-xA-IPR" secondAttribute="bottom" constant="54" id="7hS-tZ-5Z8"/>
                                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="MVK-fC-8Zn" secondAttribute="trailing" constant="223" id="89y-gL-433"/>
+                                            <constraint firstItem="0ee-KT-6bE" firstAttribute="top" secondItem="YmY-55-8rM" secondAttribute="bottom" constant="16" id="A3p-uX-3CQ"/>
                                             <constraint firstItem="zEN-3C-Cbr" firstAttribute="leading" secondItem="0ee-KT-6bE" secondAttribute="leading" id="AJ0-2t-SAU"/>
                                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="6Y4-xA-IPR" secondAttribute="trailing" constant="40" id="ALE-ba-Wq4"/>
-                                            <constraint firstItem="KV6-ji-NXw" firstAttribute="trailing" secondItem="zEN-3C-Cbr" secondAttribute="trailing" id="CIM-gT-khS"/>
                                             <constraint firstItem="2I7-fa-54j" firstAttribute="leading" secondItem="zSm-gh-MgW" secondAttribute="leading" id="Eks-ue-nYR"/>
                                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="alk-43-DV0" secondAttribute="trailing" constant="205" id="Fp3-8N-mMZ"/>
                                             <constraint firstItem="6Y4-xA-IPR" firstAttribute="leading" secondItem="2HV-uv-V21" secondAttribute="leading" constant="40" id="Fpj-Hn-Wkc"/>
                                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="nbR-hi-9qt" secondAttribute="trailing" constant="286" id="IFm-Ci-PWu"/>
+                                            <constraint firstItem="iID-7F-VyR" firstAttribute="leading" secondItem="KV6-ji-NXw" secondAttribute="leading" id="J05-yd-Ig3"/>
                                             <constraint firstItem="hti-xV-0DS" firstAttribute="leading" secondItem="2I7-fa-54j" secondAttribute="leading" id="J7Y-sE-vmv"/>
                                             <constraint firstItem="KV6-ji-NXw" firstAttribute="leading" secondItem="nbR-hi-9qt" secondAttribute="leading" id="KvB-kL-pXp"/>
                                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="3fS-aw-iwu" secondAttribute="trailing" constant="120" id="LRc-aF-Q2v"/>
+                                            <constraint firstItem="YmY-55-8rM" firstAttribute="trailing" secondItem="zEN-3C-Cbr" secondAttribute="trailing" id="MNq-UV-SMd"/>
+                                            <constraint firstItem="v19-ya-1UH" firstAttribute="leading" secondItem="raL-eu-ISn" secondAttribute="leading" id="MzY-JX-lka"/>
                                             <constraint firstItem="zSm-gh-MgW" firstAttribute="top" secondItem="2I7-fa-54j" secondAttribute="bottom" constant="29" id="NPg-np-pIY"/>
                                             <constraint firstItem="2I7-fa-54j" firstAttribute="centerY" secondItem="3fS-aw-iwu" secondAttribute="centerY" id="NgO-oQ-ZC1"/>
                                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="0ee-KT-6bE" secondAttribute="trailing" constant="263" id="O0r-O0-FTb"/>
+                                            <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="iID-7F-VyR" secondAttribute="trailing" constant="294" id="OQ9-t7-IpL"/>
                                             <constraint firstItem="KV6-ji-NXw" firstAttribute="top" secondItem="nbR-hi-9qt" secondAttribute="bottom" constant="10" id="Rtq-c1-bvU"/>
                                             <constraint firstItem="alk-43-DV0" firstAttribute="leading" secondItem="2HV-uv-V21" secondAttribute="leading" constant="170" id="SFW-cu-Uqx"/>
                                             <constraint firstItem="MVK-fC-8Zn" firstAttribute="leading" secondItem="zSm-gh-MgW" secondAttribute="trailing" constant="20" id="Tk5-Qm-3bC"/>
                                             <constraint firstItem="3fS-aw-iwu" firstAttribute="top" secondItem="hti-xV-0DS" secondAttribute="bottom" constant="30" id="Txh-OE-Ex8"/>
+                                            <constraint firstItem="raL-eu-ISn" firstAttribute="top" secondItem="v19-ya-1UH" secondAttribute="bottom" constant="13" id="UOT-PN-weD"/>
+                                            <constraint firstItem="YmY-55-8rM" firstAttribute="leading" secondItem="0ee-KT-6bE" secondAttribute="leading" id="YUF-ep-C9h"/>
                                             <constraint firstItem="i75-hf-EDh" firstAttribute="leading" secondItem="2HV-uv-V21" secondAttribute="leading" constant="40" id="agg-Vd-hkF"/>
                                             <constraint firstItem="KV6-ji-NXw" firstAttribute="leading" secondItem="2HV-uv-V21" secondAttribute="leading" constant="20" id="aw5-BM-r6l"/>
                                             <constraint firstItem="hti-xV-0DS" firstAttribute="top" secondItem="i75-hf-EDh" secondAttribute="bottom" constant="45" id="bQA-NA-nPG"/>
@@ -1026,14 +1058,18 @@
                                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="hti-xV-0DS" secondAttribute="trailing" constant="173" id="et8-6a-zPc"/>
                                             <constraint firstAttribute="trailing" secondItem="KV6-ji-NXw" secondAttribute="trailing" constant="16" id="f9D-H9-6t5"/>
                                             <constraint firstItem="i75-hf-EDh" firstAttribute="firstBaseline" secondItem="alk-43-DV0" secondAttribute="firstBaseline" id="gt8-TI-3u6"/>
-                                            <constraint firstItem="KV6-ji-NXw" firstAttribute="leading" secondItem="0ee-KT-6bE" secondAttribute="leading" id="jbd-AK-bdp"/>
-                                            <constraint firstItem="0ee-KT-6bE" firstAttribute="top" secondItem="KV6-ji-NXw" secondAttribute="bottom" constant="29" id="n5F-eN-nXm"/>
-                                            <constraint firstItem="6Y4-xA-IPR" firstAttribute="top" secondItem="zEN-3C-Cbr" secondAttribute="bottom" constant="115" id="nKa-Hf-aWK"/>
+                                            <constraint firstItem="6Y4-xA-IPR" firstAttribute="top" secondItem="zEN-3C-Cbr" secondAttribute="bottom" constant="32" id="i3U-s6-d7b"/>
+                                            <constraint firstItem="YmY-55-8rM" firstAttribute="leading" secondItem="raL-eu-ISn" secondAttribute="leading" id="l90-19-RyT"/>
+                                            <constraint firstItem="v19-ya-1UH" firstAttribute="trailing" secondItem="KV6-ji-NXw" secondAttribute="trailing" id="lIX-42-6xh"/>
+                                            <constraint firstItem="v19-ya-1UH" firstAttribute="leading" secondItem="iID-7F-VyR" secondAttribute="leading" id="lkn-So-rmu"/>
                                             <constraint firstItem="zSm-gh-MgW" firstAttribute="leading" secondItem="nbR-hi-9qt" secondAttribute="leading" id="oCQ-cc-WMq"/>
+                                            <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="raL-eu-ISn" secondAttribute="trailing" constant="273" id="qXp-p4-0p0"/>
+                                            <constraint firstItem="YmY-55-8rM" firstAttribute="top" secondItem="raL-eu-ISn" secondAttribute="bottom" constant="10" id="r2s-fA-VNW"/>
                                             <constraint firstItem="i75-hf-EDh" firstAttribute="top" secondItem="2HV-uv-V21" secondAttribute="top" constant="20" id="rah-Hl-OUA"/>
                                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="i75-hf-EDh" secondAttribute="trailing" constant="40" id="s1a-mw-Pfk"/>
                                             <constraint firstItem="MVK-fC-8Zn" firstAttribute="top" secondItem="3fS-aw-iwu" secondAttribute="bottom" constant="29" id="tc8-wN-3FE"/>
                                             <constraint firstItem="KV6-ji-NXw" firstAttribute="top" secondItem="2HV-uv-V21" secondAttribute="top" constant="325" id="tvn-dn-TSo"/>
+                                            <constraint firstItem="iID-7F-VyR" firstAttribute="top" secondItem="KV6-ji-NXw" secondAttribute="bottom" constant="16" id="zq6-7P-6IA"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1057,9 +1093,11 @@
                         <viewLayoutGuide key="safeArea" id="MEf-0V-fws"/>
                     </view>
                     <connections>
+                        <outlet property="eventAttendees" destination="YmY-55-8rM" id="ul3-bZ-gvd"/>
                         <outlet property="eventCategory" destination="MVK-fC-8Zn" id="yPj-dG-sgB"/>
                         <outlet property="eventDate" destination="3fS-aw-iwu" id="w55-12-lwd"/>
                         <outlet property="eventDescription" destination="zEN-3C-Cbr" id="lMY-LB-1Wh"/>
+                        <outlet property="eventInvitees" destination="v19-ya-1UH" id="CNo-Pc-b2A"/>
                         <outlet property="eventLocation" destination="KV6-ji-NXw" id="sbv-1u-ACR"/>
                         <outlet property="eventTitle" destination="hti-xV-0DS" id="HRE-ir-Fyv"/>
                     </connections>
