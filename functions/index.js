@@ -550,6 +550,27 @@ exports.getResponse = functions.https.onCall((data) => {
   return {response: action};
 });
 
+exports.seenEvent = functions.https.onCall((data) => {
+  var eventName = data.eventName;
+  var email = data.user;
+
+  var db = admin.database();
+  var ref = db.ref("events");
+
+  ref.orderByChild("eventName").equalTo(eventName).on("child_added", function(snapshot){
+    var updates = {}
+    var seen = "";
+    if(snapshot.val().seen === ""){
+        seen = email;
+    }
+    else{
+        seen = snapshot.val().seen + "," + email;
+    }
+    updates['/'+snapshot.key+'/seen'] = seen;
+    ref.update(updates);
+  });
+});
+
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
