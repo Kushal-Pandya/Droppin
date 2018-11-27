@@ -119,6 +119,8 @@ class EventDetailsViewController: UIViewController {
     @IBOutlet weak var eventLocation: UILabel!
     @IBOutlet weak var eventCategory: UILabel!
     @IBOutlet weak var eventDate: UILabel!
+    @IBOutlet weak var eventInvitees: UILabel!
+    @IBOutlet weak var eventAttendees: UILabel!
     
     @IBAction func closeButtonTapped(_ sender: UIButton) {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
@@ -129,6 +131,8 @@ class EventDetailsViewController: UIViewController {
         
         eventTitle?.text = textTitle
         eventDescription?.text = textDescription
+        eventInvitees?.text = "ajgnfakf alkfj aflkja faklfjnafjklnafjkafjakfnajkflajfasflkjanfjka faff fajf ajhf afhj afhja fhjabfajklfnasfkjfnafjk sfasjhfbakfjasjknfjakfnasjkfnajfknakjfnjkfnsjfkansfjkadlnfkjafn ckajfnajklf"
+        eventAttendees?.text = "ajgnfakf alkfj aflkja faklfjnafjklnafjkafjakfnajkflajfasflkjanfjka faff fajf ajhf afhj afhja fhjabfajklfnasfkjfnafjk sfasjhfbakfjasjknfjakfnasjkfnajfknakjfnjkfnsjfkansfjkadlnfkjafn ckajfnajklf"
         // MMM d, EEEE, h:mm a
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss +zzzz"

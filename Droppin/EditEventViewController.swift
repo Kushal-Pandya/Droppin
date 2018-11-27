@@ -15,6 +15,13 @@ class EditEventViewController: UIViewController {
     @IBOutlet weak var eventDescriptionField: UITextView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var stepper: UIStepper!
+    @IBOutlet weak var noOfAttendees: UILabel!
+    
+
+    @IBAction func attendeesLimitButton(_ sender: UIStepper) {
+        noOfAttendees.text = Int(sender.value).description
+    }
     
     var eventName: String = ""
     lazy var functions = Functions.functions()
