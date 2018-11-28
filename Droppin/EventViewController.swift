@@ -62,6 +62,8 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
         var eventDate: String = ""
         var eventCategory: String = ""
         var eventLocation: String = ""
+        var eventInvites: String = ""
+        var eventAccepted: [String] = [""]
         
         functions.httpsCallable("getEventDetails").call(data) { (result, error) in
             if let error = error as NSError? {
@@ -87,6 +89,12 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
                     if let location = theEvent["address"] as? String {
                         eventLocation = location
                     }
+                    if let invites = theEvent["invites"] as? String {
+                        eventInvites = invites
+                    }
+                    if let checkString = theEvent["accepted"] as? [String] {
+                        eventAccepted = checkString
+                    }
                     
                 }
             }
@@ -99,6 +107,8 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
                 eventDetailsViewController.textDate = eventDate
                 eventDetailsViewController.textCategory = eventCategory
                 eventDetailsViewController.textLocation = eventLocation
+                eventDetailsViewController.invites = eventInvites
+                eventDetailsViewController.accepted = eventAccepted
                 
                 self.present(eventDetailsViewController, animated: true, completion: nil)
             }
