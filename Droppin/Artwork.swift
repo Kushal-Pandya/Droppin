@@ -16,14 +16,18 @@ class Artwork: NSObject, MKAnnotation {
     let text: String?
     let location: String?
     let coordinate: CLLocationCoordinate2D
+    let eventInvites: String?
+    let eventAccepted: [String]?
     
-    init(title: String, subtitle: String, date: String, text: String, location: String, coordinate: CLLocationCoordinate2D) {
+    init(title: String, subtitle: String, date: String, text: String, location: String, coordinate: CLLocationCoordinate2D, eventInvites: String, eventAccepted: [String]) {
         self.title = title
         self.subtitle = subtitle
         self.date = date
         self.text = text
         self.location = location
         self.coordinate = coordinate
+        self.eventInvites = eventInvites
+        self.eventAccepted = eventAccepted
         
         super.init()
     }
