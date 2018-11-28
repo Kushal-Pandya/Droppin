@@ -147,10 +147,11 @@ exports.searchByFilters = functions.https.onCall((data) => {
 
     userInvite = invites.find(findUser);
 
-    if((category === categoryID || categoryID === null) && (status === eventType || eventType === null) && (creator === host || userInvite === host)) {
+    if((category === categoryID || categoryID === null) && ((status === eventType && (eventType === "Public" || (eventType === "Private" && (creator === host || userInvite === host)))) || eventType === null)) {
       obj = {
         "category": snapshot.val().category,
         "address": snapshot.val().address,
+        "accepted": snapshot.val().accepted,
         "dateStart": snapshot.val().dateStart,
         "eventName": snapshot.val().eventName,
         "eventType": snapshot.val().eventType,
@@ -159,6 +160,8 @@ exports.searchByFilters = functions.https.onCall((data) => {
         "invites": snapshot.val().invites,
         "latitude": snapshot.val().latitude,
         "longitude": snapshot.val().longitude,
+        "seen": snapshot.val().seen,
+        "seenAccepted": snapshot.val().seenAccepted,
       };
       eventList[i] = obj;
       i = i + 1;
@@ -199,6 +202,7 @@ exports.getEvents = functions.https.onCall((data) => {
       obj = {
         "category": snapshot.val().category,
         "address": snapshot.val().address,
+        "accepted": snapshot.val().accepted,
         "dateStart": snapshot.val().dateStart,
         "eventName": snapshot.val().eventName,
         "eventType": snapshot.val().eventType,
@@ -207,6 +211,8 @@ exports.getEvents = functions.https.onCall((data) => {
         "invites": snapshot.val().invites,
         "latitude": snapshot.val().latitude,
         "longitude": snapshot.val().longitude,
+        "seen": snapshot.val().seen,
+        "seenAccepted": snapshot.val().seenAccepted,
       };
       eventList[i] = obj;
       i = i + 1;
@@ -335,6 +341,7 @@ exports.getEventDetails = functions.https.onCall((data) => {
     obj = {
       "category": snapshot.val().category,
       "address": snapshot.val().address,
+      "accepted": snapshot.val().accepted,
       "dateStart": snapshot.val().dateStart,
       "eventName": snapshot.val().eventName,
       "eventType": snapshot.val().eventType,
@@ -359,6 +366,7 @@ exports.editEvent = functions.https.onCall((data) => {
   var description = data.description;
   var dateStart = data.dateStart;
   var eventType = data.eventType;
+  var limit = data.limitAttend;
 
   var db = admin.database();
   var ref = db.ref("events");
@@ -368,6 +376,7 @@ exports.editEvent = functions.https.onCall((data) => {
     updates['/'+snapshot.key+'/description'] = description;
     updates['/'+snapshot.key+'/dateStart'] = dateStart;
     updates['/'+snapshot.key+'/eventType'] = eventType;
+    updates['/'+snapshot.key+'/limitAttend'] = limit;
     ref.update(updates);
   });
 });
@@ -390,6 +399,7 @@ exports.acceptInvite = functions.https.onCall((data) => {
     var aIndex = aData.indexOf(email);
     var dIndex = dData.indexOf(email);
     var tIndex = tData.indexOf(email);
+    var limit = parseInt(snapshot.val().limitAttend, 10);
     if (tIndex > -1){
         tData.splice(tIndex,1);
         if(tData.length === 0){
@@ -410,7 +420,7 @@ exports.acceptInvite = functions.https.onCall((data) => {
     }
 
     aData.push(email);
-    if(aIndex < 0){
+    if(aIndex < 0 && aData.length <= limit){
         updates['/'+snapshot.key+'/accepted'] = aData;
         ref.update(updates);
     }
@@ -567,6 +577,27 @@ exports.seenEvent = functions.https.onCall((data) => {
         seen = snapshot.val().seen + "," + email;
     }
     updates['/'+snapshot.key+'/seen'] = seen;
+    ref.update(updates);
+  });
+});
+
+exports.seenAccepted = functions.https.onCall((data) => {
+  var eventName = data.eventName;
+  var email = data.user;
+
+  var db = admin.database();
+  var ref = db.ref("events");
+  var seen = "";
+
+  ref.orderByChild("eventName").equalTo(eventName).on("child_added", function(snapshot){
+    var updates = {}
+    if(snapshot.val().seenAccepted === ""){
+        seen = email;
+    }
+    else{
+        seen = snapshot.val().seenAccepted + "," + email;
+    }
+    updates['/'+snapshot.key+'/seenAccepted'] = seen;
     ref.update(updates);
   });
 });
