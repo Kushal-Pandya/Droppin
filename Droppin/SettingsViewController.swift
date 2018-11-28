@@ -11,11 +11,12 @@ import UIKit
 class SettingsViewController: UIViewController {
     
     @IBOutlet weak var signOutButton: UIButton!
+    @IBOutlet weak var usernameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        usernameLabel.text = UserDefaults.standard.object(forKey: "email") as? String
     }
     
     @IBAction func signOutTapped(_ sender: UIButton) {

@@ -113,12 +113,16 @@ class EventDetailsViewController: UIViewController {
     var textDate:String = ""
     var textLocation:String = ""
     var textCategory:String = ""
+    var invites:String = ""
+    var accepted:[String] = [""]
 
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventDescription: UILabel!
     @IBOutlet weak var eventLocation: UILabel!
     @IBOutlet weak var eventCategory: UILabel!
     @IBOutlet weak var eventDate: UILabel!
+    @IBOutlet weak var eventInvitees: UILabel!
+    @IBOutlet weak var eventAttendees: UILabel!
     
     @IBAction func closeButtonTapped(_ sender: UIButton) {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
@@ -127,8 +131,13 @@ class EventDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let invitesList = invites.split(separator: ",")
+        
         eventTitle?.text = textTitle
         eventDescription?.text = textDescription
+        eventInvitees?.text = invitesList.joined(separator: " ")
+        eventAttendees?.text = accepted.joined(separator: " ")
+        
         // MMM d, EEEE, h:mm a
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss +zzzz"
@@ -145,7 +154,6 @@ class EventDetailsViewController: UIViewController {
         
         eventCategory?.text = textCategory
         eventLocation?.text = textLocation
-        // Do any additional setup after loading the view.
     }
     
 }

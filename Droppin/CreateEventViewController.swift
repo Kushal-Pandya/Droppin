@@ -115,6 +115,7 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
                     "tentative": "",
                     "declined": "",
                     "host": host,
+                    "limitAttend": "20",
                     "invites": self.inviteesField.text!,
                     "eventType": self.eventMode.titleForSegment(at: self.eventMode.selectedSegmentIndex)!,
                     "eventName": self.eventNameField.text!,
