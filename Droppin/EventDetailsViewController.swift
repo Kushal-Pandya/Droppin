@@ -113,6 +113,8 @@ class EventDetailsViewController: UIViewController {
     var textDate:String = ""
     var textLocation:String = ""
     var textCategory:String = ""
+    var invites:String = ""
+    var accepted:[String] = [""]
 
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventDescription: UILabel!
@@ -129,6 +131,7 @@ class EventDetailsViewController: UIViewController {
         
         eventTitle?.text = textTitle
         eventDescription?.text = textDescription
+        
         // MMM d, EEEE, h:mm a
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss +zzzz"
@@ -145,7 +148,6 @@ class EventDetailsViewController: UIViewController {
         
         eventCategory?.text = textCategory
         eventLocation?.text = textLocation
-        // Do any additional setup after loading the view.
     }
     
 }

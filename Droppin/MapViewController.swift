@@ -189,6 +189,12 @@ extension MapViewController: FiltersDelegate {
                 let eventDescription = theEvent["description"] as? String
                 let eventDate = theEvent["dateStart"] as? String
                 let eventLocation = theEvent["address"] as? String
+                let eventInvites = theEvent["invites"] as? String
+                var eventAccepted: [String] = [""]
+                
+                if let checkString = theEvent["accepted"] as? [String] {
+                    eventAccepted = checkString
+                }
                 
                 annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
                 
@@ -198,11 +204,11 @@ extension MapViewController: FiltersDelegate {
                                       date: eventDate!,
                                       text: eventDescription!,
                                       location: eventLocation!,
-                                      coordinate: annotation.coordinate)
+                                      coordinate: annotation.coordinate,
+                                      eventInvites: eventInvites!,
+                                      eventAccepted: eventAccepted)
                 
                 self.mapView.addAnnotation(artwork)
-                
-                // self.mapView.addAnnotation(annotation)
             }
         }
     }
@@ -278,6 +284,8 @@ extension MapViewController: MKMapViewDelegate {
             eventDetailsViewController.textDate = annotation.date!
             eventDetailsViewController.textCategory = annotation.subtitle!
             eventDetailsViewController.textLocation = annotation.location!
+            eventDetailsViewController.invites = annotation.eventInvites!
+            eventDetailsViewController.accepted = annotation.eventAccepted!
             
             self.present(eventDetailsViewController, animated: true, completion: nil)
         }

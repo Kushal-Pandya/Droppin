@@ -667,25 +667,45 @@
                                     <action selector="signOutTapped:" destination="fSR-vu-xVr" eventType="touchUpInside" id="GzV-rk-fbk"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Currently signed in as:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Qk-3o-Qfu">
+                                <rect key="frame" x="99" y="471" width="176" height="22"/>
+                                <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JU0-hz-p5B">
+                                <rect key="frame" x="40" y="501" width="295" height="24"/>
+                                <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="j3k-vL-Ibj" firstAttribute="leading" secondItem="ExB-uB-3rw" secondAttribute="leading" constant="40" id="5MQ-uF-4it"/>
                             <constraint firstItem="ExB-uB-3rw" firstAttribute="trailing" secondItem="j3k-vL-Ibj" secondAttribute="trailing" constant="40" id="6aM-Wk-DDv"/>
                             <constraint firstItem="ExB-uB-3rw" firstAttribute="bottom" secondItem="j3k-vL-Ibj" secondAttribute="bottom" constant="30" id="ESQ-GX-Ns0"/>
+                            <constraint firstItem="ExB-uB-3rw" firstAttribute="trailing" secondItem="JU0-hz-p5B" secondAttribute="trailing" constant="40" id="Nw2-ay-h93"/>
+                            <constraint firstItem="j3k-vL-Ibj" firstAttribute="top" secondItem="JU0-hz-p5B" secondAttribute="bottom" constant="23" id="cME-BV-4gE"/>
+                            <constraint firstItem="ExB-uB-3rw" firstAttribute="trailing" secondItem="6Qk-3o-Qfu" secondAttribute="trailing" constant="100" id="igv-eQ-2G3"/>
+                            <constraint firstItem="6Qk-3o-Qfu" firstAttribute="top" secondItem="ExB-uB-3rw" secondAttribute="top" constant="451" id="kga-Ek-A9l"/>
+                            <constraint firstItem="JU0-hz-p5B" firstAttribute="top" secondItem="6Qk-3o-Qfu" secondAttribute="bottom" constant="8" id="pLj-il-XQi"/>
+                            <constraint firstItem="JU0-hz-p5B" firstAttribute="leading" secondItem="ExB-uB-3rw" secondAttribute="leading" constant="40" id="r4h-Me-BwY"/>
+                            <constraint firstItem="6Qk-3o-Qfu" firstAttribute="leading" secondItem="ExB-uB-3rw" secondAttribute="leading" constant="99" id="wAw-4a-dhT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ExB-uB-3rw"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" id="Ly5-dX-cgf"/>
                     <connections>
                         <outlet property="signOutButton" destination="j3k-vL-Ibj" id="jsz-h2-Tzv"/>
+                        <outlet property="usernameLabel" destination="JU0-hz-p5B" id="mSJ-01-rHT"/>
                         <segue destination="fZC-nf-rOE" kind="unwind" identifier="unwindToLoginViewController" unwindAction="prepareForUnwindWithSegue:" id="edL-mv-1L6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9EE-i2-hQL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="fZC-nf-rOE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4121" y="-143"/>
+            <point key="canvasLocation" x="4120.8000000000002" y="-143.47826086956522"/>
         </scene>
         <!--Map-->
         <scene sceneID="004-WH-HV4">
