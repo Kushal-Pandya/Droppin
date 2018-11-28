@@ -40,7 +40,8 @@ class EditEventViewController: UIViewController {
             "eventName": eventName,
             "eventType": eventType.titleForSegment(at: eventType.selectedSegmentIndex)!,
             "dateStart": eventDateField.text!,
-            "description": eventDescriptionField.text!
+            "description": eventDescriptionField.text!,
+            "limitAttend": noOfAttendees.text
         ]
         
         // Activity Indicator
