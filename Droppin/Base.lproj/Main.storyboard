@@ -629,22 +629,6 @@
             </objects>
             <point key="canvasLocation" x="5568.8000000000002" y="-996.7016491754124"/>
         </scene>
-        <!--Invitations-->
-        <scene sceneID="c7v-b3-gbL">
-            <objects>
-                <viewController id="UXP-2S-xjn" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="aBK-lM-v7L">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="e5S-U1-45a"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Invitations" id="PGs-pR-J4c"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="grI-zp-p0m" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2769" y="71"/>
-        </scene>
         <!--Settings-->
         <scene sceneID="Ngy-b7-C1G">
             <objects>
@@ -761,7 +745,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="sdd-vk-mH7">
             <objects>
-                <tabBarController id="SUi-bm-mzI" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarViewController" id="SUi-bm-mzI" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="v3w-m0-Dkr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -770,7 +754,6 @@
                     <connections>
                         <segue destination="tQa-2T-Klu" kind="relationship" relationship="viewControllers" id="dQk-Yt-rJZ"/>
                         <segue destination="Liz-SQ-NYe" kind="relationship" relationship="viewControllers" id="14O-vK-ktD"/>
-                        <segue destination="UXP-2S-xjn" kind="relationship" relationship="viewControllers" id="iLh-Tf-e4X"/>
                         <segue destination="fSR-vu-xVr" kind="relationship" relationship="viewControllers" id="FHP-6k-ARc"/>
                     </connections>
                 </tabBarController>

@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import Firebase
 import FirebaseFunctions
+import UserNotifications
 
 class MapViewController: UIViewController {
     
@@ -209,6 +210,62 @@ extension MapViewController: FiltersDelegate {
                                       eventAccepted: eventAccepted)
                 
                 self.mapView.addAnnotation(artwork)
+
+                let inviteesList = theEvent["invites"] as? String
+                let seenList = theEvent["seen"] as? String
+                
+                let host = UserDefaults.standard.object(forKey: "email") as! String
+                let eventHost = theEvent["host"] as? String
+                if inviteesList!.contains(host) && !(seenList!.contains(host)) {
+                    produceNotification(eventName: annotation.title!, eventHost: eventHost!, currentUser: host, functionName: "seenEvent", acceptingUser: "")
+                }
+                var acceptedList: [String] = []
+                
+                if let theAcceptedList = theEvent["accepted"] as? [String] {
+                    acceptedList = theAcceptedList
+                }
+                let seenAcceptedList = theEvent["seenAccepted"] as? String
+                
+                if host == eventHost! {
+                    if !(acceptedList.isEmpty) {
+                        for acceptedUser in acceptedList {
+                            if !(seenAcceptedList!.contains(acceptedUser)) {
+                                produceNotification(eventName: annotation.title!, eventHost: eventHost!, currentUser: host, functionName: "seenAccepted", acceptingUser: acceptedUser)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func produceNotification(eventName: String, eventHost: String, currentUser: String, functionName: String, acceptingUser: String) {
+        let content = UNMutableNotificationContent()
+        var theUser = currentUser
+        
+        content.title = "You've been invited!"
+        content.body = "To " + eventName + " by " + eventHost
+        
+        if (functionName == "seenAccepted") {
+            content.title = "Invite Accepted!"
+            content.body = "By " + acceptingUser + " to " + eventName
+            theUser = acceptingUser
+        }
+        
+        content.sound = UNNotificationSound.default
+        let theIdentifier = content.title + " " + content.body
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let request = UNNotificationRequest(identifier: theIdentifier, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        
+        let data = ["eventName": eventName, "user": theUser]
+        functions.httpsCallable(functionName).call(data) { (result, error) in
+            if let error = error as NSError? {
+                let alert = UIAlertController(title: "Failure", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
             }
         }
     }

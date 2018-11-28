@@ -55,6 +55,7 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         let eventTitle = cell?.textLabel?.text!
+        
         let data = ["eventName": eventTitle]
         
         var eventDescription: String = ""
