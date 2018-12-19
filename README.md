@@ -16,3 +16,5 @@ Don't open "Droppin.xcodeproj" to work on the app.
 xcodeproj doesn't work after installing Firebase. Use xcworkspace.
 
 Don't add Podfile.lock and Pods folder to git ! This causes conflicts
+
+### Start Droppin'
