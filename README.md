@@ -1,4 +1,4 @@
-# Velocity
+# Droppin' by Team Velocity
 
 1. Clone this branch
 
