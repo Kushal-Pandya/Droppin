@@ -24,11 +24,26 @@ class EditEventViewController: UIViewController {
     }
     
     var eventName: String = ""
+    var eventDate: String = ""
+    var eventDescription: String = ""
+    var limitAttend: String = ""
+    var type: String = ""
     lazy var functions = Functions.functions()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         createDatePicker()
+        
+        eventDateField.text = eventDate
+        eventDescriptionField.text = eventDescription
+        noOfAttendees.text = limitAttend
+        
+        switch type {
+        case "Private":
+            eventType.selectedSegmentIndex = 1
+        default:
+            eventType.selectedSegmentIndex = 0
+        }
     }
     
     @IBAction func closeButtonTapped(_ sender: UIButton) {

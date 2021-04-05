@@ -121,12 +121,56 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
             let edit = UITableViewRowAction(style: .normal, title: "Edit") { action, index in
                 let cell = tableView.cellForRow(at: index)
                 let cellTitle = cell?.textLabel?.text
+                var eventDescription: String = ""
+                var eventDate: String = ""
+                var eventType: String = "0"
+                var limitAttend: String = "20"
+                let data = ["eventName": cellTitle!]
                 
-                if let editEventViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(
-                    withIdentifier: "editEventViewController") as? EditEventViewController {
+                // Activity Indicator
+                let activityIndicator = UIActivityIndicatorView(style: .gray)
+                activityIndicator.center = self.view.center
+                activityIndicator.hidesWhenStopped = true
+                activityIndicator.startAnimating()
+                
+                self.functions.httpsCallable("getEventDetails").call(data) { (result, error) in
+                    if let error = error as NSError? {
+                        let alert = UIAlertController(title: "Failure", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                        return
+                    }
                     
-                    editEventViewController.eventName = cellTitle!
-                    self.present(editEventViewController, animated: true, completion: nil)
+                    let theEventDetails = ((result?.data as? [String:Any])?["eventList"] as? [Any])!
+                    
+                    for event in theEventDetails {
+                        if let theEvent = event as? [String:Any] {
+                            if let description = theEvent["description"] as? String {
+                                eventDescription = description
+                            }
+                            if let date = theEvent["dateStart"] as? String {
+                                eventDate = date
+                            }
+                            if let type = theEvent["eventType"] as? String {
+                                eventType = type
+                            }
+                            if let limit = theEvent["limitAttend"] as? String {
+                                limitAttend = limit
+                            }
+                        }
+                    }
+                    activityIndicator.stopAnimating()
+                    
+                    if let editEventViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(
+                        withIdentifier: "editEventViewController") as? EditEventViewController {
+                        
+                        editEventViewController.eventName = cellTitle!
+                        editEventViewController.eventDate = eventDate
+                        editEventViewController.eventDescription = eventDescription
+                        editEventViewController.type = eventType
+                        editEventViewController.limitAttend = limitAttend
+                        self.present(editEventViewController, animated: true, completion: nil)
+                    }
                 }
             }
             

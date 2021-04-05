@@ -114,6 +114,8 @@ class CreateEventViewController: UIViewController, UIPickerViewDelegate, UIPicke
                     "accepted": "",
                     "tentative": "",
                     "declined": "",
+                    "seen": "",
+                    "seenAccepted": "",
                     "host": host,
                     "limitAttend": "20",
                     "invites": self.inviteesField.text!,
